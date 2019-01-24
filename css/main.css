@@ -1,34 +1,103 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
 *{
-    margin: 0;
+    margin-left: 5px;
+    margin-right: 5px;  
     padding: 0;
+    font-family: 'Open Sans', sans-serif;   
 }
 
 .header-container{
-    position: fixed;
-    float: left;
-    height: 100px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%,0);
+    padding-bottom: 40px;
+    height: 70px;
     width: 100%;
-    background-color: grey;
+    background-color: rgb(255, 255, 255);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.308);
+
 }
 
 .nav-header-main li{
     position: relative;
     float: left;
     width: auto;
-    padding: 15px;
-    padding-top: 35px;
+    height: auto;
     list-style-type: none;
     top: 50%;
 }
 
 .nav-header-main li a{
     text-decoration: none;
+    color: black;
+    font-size: 25px;
+}
+
+.nav-header-main li a:visited{
+    text-decoration: none;
+    color: black;
 }
 
 .header-logo{
     position: relative;
     float: left;
-    height: 90px;
+    height: 70px;
     padding-top: 5px;
     padding-left: 10px;
 }
+
+.header-login{
+    position: relative;
+    float: right;
+    height: auto;
+    width: auto;
+    top: 25%;
+    transform: translate(0,-75%);
+}
+
+.form-login{
+    float: right;
+}
+
+.btn-signup{
+    float: right;    
+}
+
+.header-login button, .header-login a {
+    background-color: rgb(0, 0, 0); 
+    border: none;
+    padding: 7px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    /* margin: 0px 2px; */
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background: rgb(160, 179, 176);
+    color: white;
+}
+
+.header-login button:hover, .header-login a:hover {
+    background: #1ab188;;
+    color: #ffffff;
+}
+
+
+.header-login input{
+    background-color: rgba(128, 128, 128, 0.185);
+    padding: 10px 20px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 10px;
+}
+
+main{
+    /* max-width: 1200px; */
+    position: relative;
+    left: 50%;
+    transform: translate(-50%,0);
+}
+
