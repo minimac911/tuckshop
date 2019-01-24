@@ -93,3 +93,27 @@
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
+.forgot-password{
+  color: #179b77;
+  font-size: 20px;
+  float: right;
+  margin-bottom: 15px;
+  margin-right: -2px;
+}
+
+.signup-error{
+  text-align: center;
+  font-size: 18px;
+  color: red;
+  margin-top: -10px;
+  margin-bottom: -10px;
+}
+
+.signup-success{
+  text-align: center;
+  font-size: 18px;
+  color: green;
+  margin-top: -15px;
+  /* margin-bottom: -10px; */
+}
