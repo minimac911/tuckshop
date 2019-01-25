@@ -49,7 +49,7 @@ require "header.php";
                             <input class="email" type="text" name="mail" placeholder="Email" value="<?php echo $email; ?>" required> 
                             <input class="password" type="password" name="pwd" placeholder="Password" required>
                             <input class="repeat-password" type="password" name="pwd-repeat" placeholder="Repeat Password" required >
-                            <button class="btnSubmit" type="submit" name="signup-submit">Signup</button>
+                            <button  type="submit" name="signup-submit">Signup</button>
                         </form>
                     </div>
                     
@@ -76,8 +76,8 @@ require "header.php";
                             <form action="includes/login.inc.php" method="post" >
                                 <input type="text" name="mailuid" placeholder="Username/Email...">
                                 <input type="password" name="pwd" placeholder="Password">
-                                <a class="forgot-password" href="">Forgot Password?</a>
-                                <button class="btnSubmit" type="submit" name="login-submit">Login</button>
+                                <a class="forgot-password" href="reset-password.php">Forgot Password?</a>
+                                <button type="submit" name="login-submit">Login</button>
                             </form>
                     </div>
                 </div>

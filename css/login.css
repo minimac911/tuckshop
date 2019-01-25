@@ -58,7 +58,7 @@
   display: none;
 }
 
-.btnSubmit {
+.form form button {
   border: 0;
   outline: none;
   border-radius: 0;
@@ -74,8 +74,9 @@
   display:block;
   width:100%;
 }
-.btnSubmit:hover, .btnSubmit:focus {
+.form form button:hover{
   background: #179b77;
+  cursor: pointer;
 }
 
 .form input{
@@ -116,4 +117,10 @@
   color: green;
   margin-top: -15px;
   /* margin-bottom: -10px; */
+}
+
+.form .reset-instructions{
+  text-align: center;
+  font-size: 19px;
+  margin-top: -15px;
 }
