@@ -10,6 +10,9 @@
                 echo '<p>You are logged out!</p>';
             }
         ?>
+        <div class="items-container">
+
+        </div>
         
     </main>
 
