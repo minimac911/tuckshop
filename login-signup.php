@@ -68,9 +68,10 @@ require "header.php";
                             echo '<p class="signup-error">Wrong Password or Username!</p>';
                         }
                     }
-                    //  elseif (isset($_GET['signup']) == "success") {
-                    //     echo '<p class="signup-success">Signup Succesfull!</p>';
-                    // }
+                    if(isset($_GET['newpwd']) =='passwordupdated'){
+                        echo "<script type='text/javascript'>switchVisible('l');</script>";
+                        echo '<p class="signup-success">Your password has been reset!</p>';
+                    }
                     ?>
                     <div class="form">
                             <form action="includes/login.inc.php" method="post" >

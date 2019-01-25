@@ -119,8 +119,9 @@
   /* margin-bottom: -10px; */
 }
 
-.form .reset-instructions{
+.form .reset-instructions, .form .reset-success{
   text-align: center;
   font-size: 19px;
   margin-top: -15px;
 }
+
