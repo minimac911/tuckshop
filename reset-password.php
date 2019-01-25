@@ -21,7 +21,7 @@ require "header.php";
                     An email will be sent to you with further instructions on reseting your password!
                 </p>
                 <form action="includes/reset-request.inc.php" method="post" autocomplete="off">
-                    <input class="email" type="text" name="mail" placeholder="Enter your email address..." required> 
+                    <input class="email" type="email" name="mail" placeholder="Enter your email address..." required> 
                     <button type="submit" name="reset-request-submit">Reset password!</button>
                 </form>
                 <?php
