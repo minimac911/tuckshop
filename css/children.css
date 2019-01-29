@@ -1,0 +1,255 @@
+.main-child-container{
+  padding: 20px;
+}
+
+.child1 { grid-area: child1; }
+.child2 { grid-area: child2; }
+
+.grid-container {
+  /* margin-right: 100px;
+  margin-left: 100px; */
+  
+
+}
+
+.child-info-conatiner{
+  display: inline-block;
+  width: 250px;
+  color: white;
+  height: 300px;
+  background: rgba(19, 35, 47, 0.9);
+  padding: 40px;
+  margin: 20px;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+}
+
+.main-child-container h1{
+  text-align: center;
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+
+  .child-info-conatiner .child-info{
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 80%;
+    margin: 0;
+    text-align: center;
+  }
+
+  .child-info-conatiner .child-edit-button{
+      position: relative;
+      bottom: 0;
+      width: 100%;
+      height: 25%;
+      margin: 0;
+      text-align: center;
+  }
+
+  .child-info-conatiner .child-edit-button form button{
+    position: relative;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    border: 0;
+    outline: none;
+    border-radius: 0;
+    /* padding: 15px 0; */
+    font-size: 2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    background: #1ab188;
+    color: #ffffff;
+    transition: all 0.5s ease;
+    -webkit-appearance: none;
+    display:block;
+    padding: 5px ;
+}
+
+
+.child-info-conatiner .child-edit-button form button:hover{
+  cursor: pointer;
+}
+
+
+.add-another{
+  text-align: center;
+  margin-top: 20px; 
+}
+
+.add-another .form-split a, .main-child-container .children-buttons a{ 
+  border: 0;
+  outline: none;
+  border-radius: 0;
+  padding: 15px 0;
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  background: #1ab188;
+  color: #ffffff;
+  transition: all 0.5s ease;
+  -webkit-appearance: none;
+  display:inline-block;
+  width:40%; 
+  text-decoration: none;
+  text-align: center;
+}
+
+.main-child-container {
+  text-align: center;
+  height: auto;
+  margin-left: 100px;
+  margin-right: 100px;
+  /* background-color: rgba(0, 0, 0, 0.144); */
+}
+
+.main-child-container .children-buttons a{
+  box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+  /* margin: 60px; */
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.main-child-container .children-buttons{
+  text-align: center;
+  display: block;
+  width: 100%;
+  margin:0px;
+}
+
+.main-child-container .edit-child-button,.main-child-container .add-child-button{
+  display: inline-block;
+  width: 40%;
+  margin: 10px;
+}
+
+.main-child-container .add-child-button{
+  margin-right: 20px;
+}
+
+.child-row{
+  display: block;
+  margin: 10px;
+}
+
+.back-button{
+  display: inline-block;
+  width: 40%;
+  margin: 10px;
+}
+/* 
+.edit-child-form form .lable-edit{
+  margin: 0;
+  display: inline-block;
+}
+
+.edit-child-form form input{
+  width: 80%;
+  position: relative;
+} */
+
+.save-child{
+  width: 30%;
+}
+.form form .edit-child-buttons{
+ display: block;
+}
+
+.form form .edit-child-buttons button{
+  width: 30%;
+  display: inline-block;
+}
+
+/* confirmation */
+.dialog-ovelay {
+  position: fixed;
+  margin: 0;
+  overflow: hidden; 
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.50);
+  z-index: 999999;
+}
+.dialog-ovelay .dialog {
+  width: 400px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color: #fff;
+  box-shadow: 0 0 20px rgba(0,0,0,.2);
+  border-radius: 3px;
+  overflow: hidden
+}
+.dialog-ovelay .dialog header {
+  padding: 10px 8px;
+  background-color: #f6f7f9;
+  border-bottom: 1px solid #e5e5e5
+}
+.dialog-ovelay .dialog header h3 {
+  font-size: 14px;
+  margin: 0;
+  color: #555;
+  display: inline-block
+}
+.dialog-ovelay .dialog header .fa-close {
+  float: right;
+  color: #c4c5c7;
+  cursor: pointer;
+  transition: all .5s ease;
+  padding: 0 2px;
+  border-radius: 1px    
+}
+.dialog-ovelay .dialog header .fa-close:hover {
+  color: #b9b9b9
+}
+.dialog-ovelay .dialog header .fa-close:active {
+  box-shadow: 0 0 5px #673AB7;
+  color: #a2a2a2
+}
+.dialog-ovelay .dialog .dialog-msg {
+  padding: 12px 10px
+}
+.dialog-ovelay .dialog .dialog-msg p{
+  margin: 0;
+  font-size: 15px;
+  color: #333
+}
+.dialog-ovelay .dialog footer {
+  border-top: 1px solid #e5e5e5;
+  padding: 8px 10px
+}
+.dialog-ovelay .dialog footer .controls {
+  direction: rtl
+}
+.dialog-ovelay .dialog footer .controls .button {
+  padding: 5px 15px;
+  border-radius: 3px
+}
+.button {
+cursor: pointer
+}
+.button-default {
+  background-color: rgb(248, 248, 248);
+  border: 1px solid rgba(204, 204, 204, 0.5);
+  color: #5D5D5D;
+}
+.button-danger {
+  background-color: #f44336;
+  border: 1px solid #d32f2f;
+  color: #f5f5f5
+}
+.link {
+padding: 5px 10px;
+cursor: pointer
+}
+
+.child-edit-button form button{
+
+}

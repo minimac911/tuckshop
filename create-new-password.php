@@ -15,7 +15,7 @@ require "header.php";
             if (ctype_xdigit($selector) == true && ctype_xdigit($validator) == true) {
                 ?>
                 <div class="form">
-                    <form action="includes/reset-password.inc.php" method="post" autocomplete="off">
+                    <form action="includes/account-reset-password.inc.php" method="post" autocomplete="off">
                         <input type="hidden" name="selector" value="<?php echo $selector;?>"> 
                         <input type="hidden" name="validator" value="<?php echo $validator;?>"> 
                         <input class="password" type="password" name="pwd" placeholder="Enter a New Password" required>

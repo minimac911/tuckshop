@@ -3,8 +3,6 @@ require "header.php";
 ?>
 
     <main>
-        
-
         <div class="form-grid">
             <ul class="tab-group">
                 <li id="tabSign" class="tab active"><a href="javascript:switchVisible('s')">Sign Up</a></li>
@@ -44,7 +42,7 @@ require "header.php";
                     }
                     ?>
                     <div class="form">
-                        <form action="includes/signup.inc.php" method="post" autocomplete="off">
+                        <form action="includes/account-signup.inc.php" method="post" autocomplete="off">
                             <input class="username" type="text" name="uid" placeholder="Username" value="<?php echo $username; ?>" required>
                             <input class="email" type="text" name="mail" placeholder="Email" value="<?php echo $email; ?>" required> 
                             <input class="password" type="password" name="pwd" placeholder="Password" required>
@@ -74,12 +72,12 @@ require "header.php";
                     }
                     ?>
                     <div class="form">
-                            <form action="includes/login.inc.php" method="post" >
-                                <input type="text" name="mailuid" placeholder="Username/Email...">
-                                <input type="password" name="pwd" placeholder="Password">
-                                <a class="forgot-password" href="reset-password.php">Forgot Password?</a>
-                                <button type="submit" name="login-submit">Login</button>
-                            </form>
+                        <form action="includes/account-login.inc.php" method="post" >
+                            <input type="text" name="uid" placeholder="Username/Email...">
+                            <input type="password" name="pwd" placeholder="Password">
+                            <a class="forgot-password" href="reset-password.php">Forgot Password?</a>
+                            <button type="submit" name="login-submit">Login</button>
+                        </form>
                     </div>
                 </div>
                 

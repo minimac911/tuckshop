@@ -9,17 +9,37 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/login.css">
-    <script src="scripts/login.js"></script>    
+    <link rel="stylesheet" href="css/children.css">
+    <script src="scripts/login.js" type="text/javascript"> </script>    
+    <script src="scripts/header.js" type="text/javascript"></script>    
+    <script src="scripts/children.js" type="text/javascript"></script>    
+
 </head>
 <body>
     
 <header>
-
+    <?php
+    //checking if the user is logged in
+    if(isset($_SESSION['userId'])){
+        //checking if the user has been idle for too long
+        if((time() - $_SESSION['last_login_timestamp']) > 3600){//60min x 60sec = 3600sec
+            header("Location: includes/account-logout.inc.php?error=idle");
+            exit();
+        }else{
+            //if they reload the header and it is under the allocated time
+            //set last_login_timestamp to current time
+            $_SESSION['last_login_timestamp'] = time();
+        }
+    }
+    ?>
     <div class="header-container">
         <nav class="nav-header-main">
-            <a  href="#" >
+            <!-- <a  href="#" >
                 <img src="img/logo.png" class="header-logo" alt="logo">
             </a>
         
@@ -28,21 +48,42 @@ session_start();
                 <li><a href="#">Portfolio</a></li>
                 <li><a href="#">About Me</a></li>
                 <li><a href="#">Contact</a></li>
-            </ul>
+            </ul> -->
         </nav>
         <div class="header-login">
             <?php
             if (isset($_SESSION['userId'])) {
-                echo '<form action="includes/logout.inc.php" method="post">
-                        <button type="submit" name="logout-submit">Logout</button>
-                    </form>';
+                ?>  
+                <!-- <form action="includes/account-logout.inc.php" method="post">
+                    <button type="submit" name="logout-submit">Logout</button>
+                </form> -->
+                <div class="dropdown">
+                    Welcome back, <?php echo($_SESSION['userUid']);?>!
+                    <button onclick="showDrop()" id="myBtn" class="account-button dropbtn">Account</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <form action="" method="Post">
+                            <button type="submit" formaction="includes/order-gen-form.inc.php" name="orderForm">Order Form</button>
+                            <a href="children.php" name="viewChildren">View Children</a>
+                            <a href="children.php" name="viewChildren">Edit Account</a>
+                            <a href="includes/account-logout.inc.php" >Logout</a>
+                        </form>
+                    </div>
+                </div>
+                <!-- <button class="account-button" data-dropdown="drop1" aria-controls="drop1" aria-expanded="false">Account</button>
+                <ul id="drop1" data-dropdown-content class="f-dropdown" aria-hidden="true">
+                    <li><a href="#">This is a link</a></li>
+                    <li><a href="#">This is another</a></li>
+                    <li><a href="#">Yet another</a></li>
+                </ul> -->
+                <?php
             } else {
-                echo '<a href="login-signup.php" class="btn-signup">Login / Signup</a>';
+                ?>
+                    <a href="login-signup.php" class="btn-signup">Login / Signup</a>
+                <?php
             }
             ?>
             
             
         </div>
     </div>
-
 </header>

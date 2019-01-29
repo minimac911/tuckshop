@@ -53,12 +53,13 @@
 .form-heading{
   font-size: 50px;
   text-align: center;
+  margin-bottom: 20px;
 }
 #login{
   display: none;
 }
 
-.form form button {
+.form form button{
   border: 0;
   outline: none;
   border-radius: 0;
@@ -79,7 +80,8 @@
   cursor: pointer;
 }
 
-.form input{
+
+.form form input, .form form select{
   font-size: 22px;
   display: block;
   width: 100%;
@@ -123,5 +125,60 @@
   text-align: center;
   font-size: 19px;
   margin-top: -15px;
+}
+
+.form .form-split{
+  display: block;
+}
+
+.form .form-split input{
+  width: 48%;
+  display: inline-block;
+}
+
+.form .form-split input:nth-child(2){
+  margin-right: 0px;
+}
+
+.form form select option{
+  cursor: pointer;
+  color: black;
+}
+
+.form form .grade-container{
+  display: block;
+  align-content: right;
+  padding: 0; 
+  /* margin-bottom: 20px; */
+}
+
+.form form .drop-selector{
+  display: inline-block;
+  width: 70%;
+  margin-top: 0;
+  margin-right: 0;
+}
+
+.form form .grade-heading{
+  display: inline-block;  
+  font-size: 30px;
+  margin-right: 38px;
+  margin-top: 0;
+    padding: 0;
+}
+
+.form form .class-container{
+  display: block;
+  align-content: right;
+  padding: 0; 
+  /* margin-bottom: 20px; */
+}
+
+.form form .class-heading{
+  display: inline-block;  
+  font-size: 30px;
+  margin-right: 53px;
+  margin-top: 0;
+  padding: 0;
 }
 
