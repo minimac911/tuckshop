@@ -3,7 +3,7 @@ session_start();
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang=”en”>
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,9 +15,12 @@ session_start();
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/children.css">
+    <link rel="stylesheet" href="css/order.css">
     <script src="scripts/login.js" type="text/javascript"> </script>    
     <script src="scripts/header.js" type="text/javascript"></script>    
     <script src="scripts/children.js" type="text/javascript"></script>    
+    <script src="scripts/order.js" type="text/javascript"></script>    
+    <script src="scripts/orderSearch.js" type="text/javascript"></script>    
 
 </head>
 <body>
@@ -62,7 +65,8 @@ session_start();
                     <button onclick="showDrop()" id="myBtn" class="account-button dropbtn">Account</button>
                     <div id="myDropdown" class="dropdown-content">
                         <form action="" method="Post">
-                            <button type="submit" formaction="includes/order-gen-form.inc.php" name="orderForm">Order Form</button>
+                            <button type="submit" formaction="includes/order-prepare-form.inc.php" name="orderForm">Order Form</button>
+                            <a href="children.php" name="viewChildren">View Orders</a>
                             <a href="children.php" name="viewChildren">View Children</a>
                             <a href="children.php" name="viewChildren">Edit Account</a>
                             <a href="includes/account-logout.inc.php" >Logout</a>
@@ -82,8 +86,7 @@ session_start();
                 <?php
             }
             ?>
-            
-            
         </div>
     </div>
+    <hr>
 </header>

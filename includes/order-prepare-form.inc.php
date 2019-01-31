@@ -2,7 +2,6 @@
 
 if (isset($_POST['order-form-submit']) || isset($_POST['orderForm'])) {
     session_start();
-    require 'dbh.inc.php';
     if(empty($_SESSION['child'][0]['childId'])){
         header("Location: ../children.php");
         exit();

@@ -67,7 +67,7 @@ require 'includes/child-view.inc.php';
                                 } else {
                                     ?>
                                     <button name="order-form-submit" type="submit"
-                                        formaction="includes/order-gen-form.inc.php?cid=<?php echo $childId;?>"
+                                        formaction="includes/order-prepare-form.inc.php?cid=<?php echo $childId;?>"
                                     >Order</button>
                                     <?php
                                 }

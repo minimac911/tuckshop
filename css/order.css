@@ -1,0 +1,109 @@
+.order-form-change{
+    display: block;
+    text-align: center; 
+    width: 100%;margin: 0;
+}
+.order-form-change h1{
+    display: inline-block;
+}
+.order-form-change .order-form-change-button{
+    display: inline-block;
+    
+}
+
+.order-form-change .order-form-change-button button{
+    border: 0;
+    outline: none;
+    border-radius: 0;
+    padding: 10px 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    background: #1ab188;
+    color: #ffffff;
+    transition: all 0.5s ease;
+    -webkit-appearance: none;
+    display:block;
+    width:100%;
+}
+
+.order-form-change .order-form-change-button button{
+    background: #179b77;
+    cursor: pointer;
+}
+
+.product-item .product-tile-footer{
+    display: table;
+}
+
+.product-item .product-tile-footer .product-title, 
+.product-item .product-tile-footer .product-price, 
+.product-item .product-tile-footer .cart-action{
+    display: inline-table;
+}
+
+.main-order-container {
+    width: auto;
+}
+
+/* .main-order-container h2{
+    
+} */
+
+.qty-action button{
+    padding: 2px 10px;
+}
+
+.main-order-container form{
+    width: 50%;
+    margin-right: 25%;
+    margin-left: 25%;
+}
+/* side bar */
+.sidebar-main-container{
+    width: 25%;
+    padding-left: 10px;
+    height: auto;
+    float: right;
+    border-left: solid 2px grey;
+    margin: 0;
+}
+
+.sidebar-main-container .order-summary-item .qty,
+.sidebar-main-container .order-summary-item .price,
+.heading-row .qty,
+.heading-row .price{
+    width: 10%;
+}
+
+.sidebar-main-container .order-summary-item .name,
+.heading-row .name{
+    width: 80%;
+}
+
+.main-order-container .head-order-form{
+    text-align: center;
+    width: 50%;
+    margin: auto 25%; 
+    /* padding-right: 15%; */
+}
+
+.main-order-container .head-order-form input{
+    font-size: 22px;
+    width: 50%;
+    height: 100%;
+    padding: 5px 10px;
+    background: none;
+    background-image: none;
+    border: 1px solid #a0b3b0;
+    color: black;
+    border-radius: 0;
+    transition: border-color .25s ease, box-shadow .25s ease;
+        margin-top: 20px;
+        margin-bottom: 20px;
+}
+
+.main-order-container #tblOrderForm{
+    width: 100%;
+}
