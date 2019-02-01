@@ -4,58 +4,75 @@ $(function() {
         return $qty*$price;
     };
 
-
     var items = [];
 
     //function to add new produc to order sumary
-    let addOrderSumary = function($qty, $productName, $productPrice){
+    let addOrderSumary = function($id, $qty, $productName, $productPrice){
         // $(".sidebar-main-container table tbody").append('<tr class="order-summary-item"><th class="qty">'+$qty+'x</th><th class="name">'+$productName+'</th><th class="qty">'+$productPrice+'</th></tr>')
-        items.push([$qty,$productName,$productPrice]);
-        console.log(items);
+        items.push([$id,$qty,$productName,$productPrice,$productPrice]);
+        // console.log(items);
     };
 
-    let updateOrderSumary = function($qty, $productName, $productPrice){
+    let updateOrderSumary = function($id, $qty, $productName, $productPrice){
         // console.log(headerArray);
         for(let i = 0; i < items.length; i++){
-            console.log(items[i][1]);
-            if(items[i][1] == $productName){
-                items[i][0]++; 
+            // console.log(items[i][1]);
+            if(items[i][0] == $id){
+                items[i][1]++;
+                items[i][4] = items[i][1]*items[i][3]; 
             }
         }    
     };
 
     let deleteOrderSumary = function($qty, $productName, $productPrice){
         for(let i = 0; i < items.length; i++){
-            console.log(items[i][1]);
-            if(items[i][1] == $productName){
-                items[i][0]--;
-                if (items[i][0]==0){
+            // console.log(items[i][2]);
+            if(items[i][2] == $productName){
+                items[i][1]--;
+                items[i][4] = items[i][1]*items[i][3]; 
+                if (items[i][1]==0){
                     items.splice($.inArray(items[i],items),1 );
                 }
             }
         }
     };
 
+    let numItemsOrderSum = 0;
+
+    let setNumItemsInOrder = function(){
+        // numItemsOrderSummary
+        $(".sidebar-main-container .numItemsOrderSummary").val(numItemsOrderSum);
+        // $(".sidebar-main-container .numItemsOrderSummary").append(numItemsOrderSum);
+    }
     //displaying items that have been selected to order summary 
     let displayOrderSummary = function(){
         $(".sidebar-main-container table tbody").empty();
 
         $.each(items, function( index, value ) {
-            $(".sidebar-main-container table tbody").append('<tr class="order-summary-item"><th class="qty">'+value[0]+'x</th><th class="name">'+value[1]+'</th><th class="price">R'+value[2]+'</th></tr>')
+            $(".sidebar-main-container table tbody").append('<tr class="order-summary-item">'
+                    +'<td style="display: none;"><input type="text"  name="id_'+index+'" value='+value[0]+'></input></td>'
+                    +'<td class="qty"><input style="display: none;" type="text"  name="qty_'+index+'" value='+value[1]+'>'+value[1]+'</input>x</td>'
+                    +'<td class="name"><input style="display: none;" type="text"  name="name_'+index+'" value='+value[2]+'>'+value[2]+'</td>'
+                    +'<td class="price" style="color: green;"><input style="display: none;" type="text"  name="price_'+index+'" value='+value[4]+'>R'+parseInt(value[4])+'.00</td>'
+                +'</tr>')
+            numItemsOrderSum = index+1;
         });  
+        // console.log(numItemsOrderSum);
         totalOrderSummary();
+        setNumItemsInOrder();
     };
+
+    
 
     let totalOrderSummary = function(){
         let $total = 0;
         $.each(items, function( index, value ) {
-            $total += (parseInt(value[2])*value[0]);
+            $total += (parseInt(value[3])*value[1]);
         });
-        console.log($total);
-        $(".sidebar-main-container .order-total .total").empty();
-        $(".sidebar-main-container .order-total .total").append("R "+$total+".00");
+        // console.log($total);
+        $(".sidebar-main-container .order-total.total").val(0);
+        $(".sidebar-main-container .order-total .total").val("R "+$total+".00");
     };
-
 
     //add 1 to quantiy
     $(".add").on('click', function(){
@@ -63,15 +80,16 @@ $(function() {
         //finding the closet class with product item
         //in that div/tr find the area where the total product price is
         //print there
+        let $id = $(this).closest(".product-item").find(".product-id").text();
         let $nameProduct = $(this).closest(".product-item").find(".product-title").text();
         let $price = $(this).closest(".product-item").find(".product-price span").text();
         let $qty = $(this).prev().val();
         let $ttlPrice = totalPrice($qty,$price)+".00";
         
         if($qty>1){
-            updateOrderSumary($qty, $nameProduct, $price);
+            updateOrderSumary($id,$qty, $nameProduct, $price);
         }else if($qty==1){
-            addOrderSumary($qty, $nameProduct, $price);
+            addOrderSumary($id,$qty, $nameProduct, $price);
         }
         displayOrderSummary();
         $(this).closest(".product-item").find(".total-product-price span").text("R"+$ttlPrice);

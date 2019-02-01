@@ -40,12 +40,15 @@ if(empty($_SESSION['child'][0]['childId'])){
     <!-- side bar displaying order summary -->
         <div class="sidebar-main-container"> 
             <h2>Order Summary</h2>
+            <form method="post" action='includes/order-add-cart.inc.php'>
             <table>
                 <thead>
                     <tr class="heading-row">
                         <th class="qty">Qty</th>
                         <th class="name">Desc</th>
                         <th class="price">Price</th>
+                        <td style="display:none;"><input type="text" class="numItemsOrderSummary" name="numItemsOrderSummary"></td>
+                        <td style="display:none;"><input type="text" class="cid" name="cid" value=<?php echo($_GET['cid'])?>></td>
                     </tr>
                 </thead>
                 <tbody>
@@ -54,12 +57,12 @@ if(empty($_SESSION['child'][0]['childId'])){
             </table>
             <div class="order-total">
                 <p>Total</p>
-                <h3 class="total"></h3>
+                <h3><input type="text" class="total" name="ttlPrice" readonly></h3>
             </div>
             <div>
-                <button>Save Order</button>
-                <button>Proceed</button>
+                <button type="submit" name="add-order-cart">Add Order To Cart</button>
             </div>
+            </form>
         </div>
 
     <!-- main order form -->
@@ -115,14 +118,14 @@ if(empty($_SESSION['child'][0]['childId'])){
                 $uniqueCat = "";
                 ?>
                 <!-- table for order form -->
-                <form method="post" action="index.php?action=add&code=<?php echo $arrProduct[$key]["idItem"]; ?>">
+                <form>
                     <table id="tblOrderForm">
                         <thead class="heading-item">
                             <tr>
                                 <th>Description</th>
                                 <th>Price</th>
-                                <th>Qty</th>
-                                <th>Total</th>
+                                <th >Qty</th>
+                                <th style="width: 70px;">Total</th>
                             </tr>
                         </thead>
                     <?php
@@ -143,10 +146,11 @@ if(empty($_SESSION['child'][0]['childId'])){
                         }
                 ?>
                     <tr class="product-item">
+                        <th class="product-id" style="display:none;"><?php echo $arrProduct[$key]["idItem"];?></th>
                         <th class="product-title">
                             <?php echo $arrProduct[$key]["nameItem"]; ?>
                             <!-- add category for easy searching -->
-                            <span style="display: none;"><?php echo $arrProduct[$key]["categoryItem"]; ?></span>
+                            <span style="display: none;"> - <?php echo $arrProduct[$key]["categoryItem"]; ?></span>
                         </th>
                         <th class="product-price">R <span><?php echo $arrProduct[$key]["priceItem"]; ?></span></th>
                         <th class="qty-action">
@@ -159,6 +163,11 @@ if(empty($_SESSION['child'][0]['childId'])){
                 <?php
                     }   
                     ?>
+                    <tfoot>
+                        <tr>
+                            <th class="no-results" colspan="4" style="display: none"><h1><i>No Results</i></h1></th>
+                        </tr>
+                    </tfoot>
                     </table>
                 </form>
                 <?php
@@ -166,9 +175,7 @@ if(empty($_SESSION['child'][0]['childId'])){
             ?>
         </div>
 
-        <?php echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
-        // echo($_SERVER['REQUEST_URI']);
-        ?>
+        <!-- <?php echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';?> -->
 
     </main>
 

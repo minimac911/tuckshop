@@ -1,24 +1,37 @@
 let hideHeading = function(){
     let thead = document.querySelectorAll("#tblOrderForm thead.thItem");
-    console.log(thead[1].nextElementSibling.children.length);
-    let tbody = thead[1].nextElementSibling.children;
-    console.log(tbody);
-    console.log(tbody[0].classList.value);
+    console.log(thead);
+    
+    //used to see if there are any items visble
+    let amountVisible = thead.length;
+
     for (var i = 0; i < thead.length; i++) {
         let tbody = thead[i].nextElementSibling.children;
         let count = 0;
         let amntHide = 0;
+        let didHide = false;
         while(tbody[count]!=undefined){
-            console.log(tbody[count].classList.value);
             if(tbody[count].classList.value == "product-item hide")
                 amntHide++
             if(amntHide==tbody.length){
                 thead[i].style.display = "none";
+                didHide = true;
             }else{
                 thead[i].style.display = "";
             }
             count++;
         }
+        if(didHide){
+            amountVisible--;
+        }
+    }
+    let row = document.getElementsByClassName("no-results");
+    // if there are no items visible then display this message
+    if(amountVisible==0){
+        console.log("Nothing visible");
+        row[0].style.display = "";
+    }else{
+        row[0].style.display = "none";
     }
 }
 
@@ -29,12 +42,6 @@ function searchItem() {
     th = document.getElementsByClassName("product-title");
     tr = document.getElementsByClassName("product-item");
 
-    // let thead = document.querySelectorAll("#tblOrderForm thead.thItem");
-    // console.log(thead[1].nextElementSibling.children.length);
-    // let tbody = thead[1].nextElementSibling.children;
-    // console.log(tbody);
-    // console.log(tbody[0].classList.value)
-    
     //loop through all rows in table and only show ones that agree to filter
     //hide the rows that are filtered out
     for (i = 0; i < th.length; i++) {

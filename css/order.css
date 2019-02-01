@@ -91,7 +91,7 @@
 
 .main-order-container .head-order-form input{
     font-size: 22px;
-    width: 50%;
+    width: 70%;
     height: 100%;
     padding: 5px 10px;
     background: none;
@@ -100,8 +100,8 @@
     color: black;
     border-radius: 0;
     transition: border-color .25s ease, box-shadow .25s ease;
-        margin-top: 20px;
-        margin-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .main-order-container #tblOrderForm{
