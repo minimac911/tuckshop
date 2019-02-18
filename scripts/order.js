@@ -50,10 +50,10 @@ $(function() {
 
         $.each(items, function( index, value ) {
             $(".sidebar-main-container table tbody").append('<tr class="order-summary-item">'
-                    +'<td style="display: none;"><input type="text"  name="id_'+index+'" value='+value[0]+'></input></td>'
-                    +'<td class="qty"><input style="display: none;" type="text"  name="qty_'+index+'" value='+value[1]+'>'+value[1]+'</input>x</td>'
-                    +'<td class="name"><input style="display: none;" type="text"  name="name_'+index+'" value='+value[2]+'>'+value[2]+'</td>'
-                    +'<td class="price" style="color: green;"><input style="display: none;" type="text"  name="price_'+index+'" value='+value[4]+'>R'+parseInt(value[4])+'.00</td>'
+                    +'<td style="display: none;"><input type="hidden"  name="id_'+index+'" value='+value[0]+'></input></td>'
+                    +'<td class="qty"><input type="hidden"  name="qty_'+index+'" value='+value[1]+'>'+value[1]+'</input>x</td>'
+                    +'<td class="name"><input type="hidden"  name="name_'+index+'" value='+value[2]+'>'+value[2]+'</td>'
+                    +'<td class="price" style="color: green;"><input type="hidden"  name="price_'+index+'" value='+value[4]+'>R'+parseInt(value[4])+'.00</td>'
                 +'</tr>')
             numItemsOrderSum = index+1;
         });  
@@ -76,14 +76,14 @@ $(function() {
 
     //add 1 to quantiy
     $(".add").on('click', function(){
-        $(this).prev().val(+$(this).prev().val() + 1);
+        $(this).prev().text(+$(this).prev().text() + 1);
         //finding the closet class with product item
         //in that div/tr find the area where the total product price is
         //print there
         let $id = $(this).closest(".product-item").find(".product-id").text();
         let $nameProduct = $(this).closest(".product-item").find(".product-title").text();
         let $price = $(this).closest(".product-item").find(".product-price span").text();
-        let $qty = $(this).prev().val();
+        let $qty = $(this).prev().text();
         let $ttlPrice = totalPrice($qty,$price)+".00";
         
         if($qty>1){
@@ -99,12 +99,12 @@ $(function() {
     
     //minus 1 to quantiy 
     $('.sub').click(function () {
-        if ($(this).next().val() > 0) {
-            if ($(this).next().val() > 0) $(this).next().val(+$(this).next().val() - 1);
+        if ($(this).next().text() > 0) {
+            if ($(this).next().text() > 0) $(this).next().text(+$(this).next().text() - 1);
 
             let $nameProduct = $(this).closest(".product-item").find(".product-title").text();
             let $price = $(this).closest(".product-item").find(".product-price span").text();
-            let $qty = $(this).next().val();
+            let $qty = $(this).next().text();
             let $ttlPrice = totalPrice($qty,$price)+".00";
 
             deleteOrderSumary($qty,$nameProduct,$price);
@@ -112,10 +112,16 @@ $(function() {
             displayOrderSummary();
 
             $(this).closest(".product-item").find(".total-product-price span").text("R"+$ttlPrice);
-            if ($(this).next().val() == 0){
+            if ($(this).next().text() == 0){
                 $(this).closest(".product-item").find(".total-product-price span").text("");
             }
         }
     });
 
+    
+
 });
+
+
+
+

@@ -86,7 +86,7 @@ require "includes/account-verify-session.inc.php";
                             $output = "includes/child-delete.inc.php?status=delete";
                             $output .= "&cid=$cid&fn=$fName&ln=$lName&gr=$grade&cl=$class";
                         ?>
-                        onclick="Confirm('Delete Child', 'Are you sure you want to Delete this child', 'Yes', 'Cancel', '<?php echo($output);?>');"
+                        onclick="Confirm('Delete Child', 'Are you sure you want to Delete this child', 'Yes', 'Cancel', 'delete-child', '<?php echo($output);?>');"
                         >Delete</button>
                     </div>
                 </form>

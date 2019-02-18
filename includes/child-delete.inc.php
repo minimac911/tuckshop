@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_POST['delete-child-submit'])) {
+if (isset($_POST['delete-child'])) {
     session_start();
     require 'dbh.inc.php';
 
@@ -39,7 +39,13 @@ if (isset($_POST['delete-child-submit'])) {
             } else {
                 mysqli_stmt_bind_param($stmt, "i", $parentId);
                 mysqli_stmt_execute($stmt);
-                require 'child-session-id-add.inc.php';
+                
+                //delete order
+                include "order-delete.inc.php";
+                deleteOrdersByCid($childId);
+
+                //update session once completed
+                require 'session-add.inc.php';
             }
             header("Location: ../children.php?status=edit&delete=success");
             exit();

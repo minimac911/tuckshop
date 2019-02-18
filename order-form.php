@@ -47,8 +47,14 @@ if(empty($_SESSION['child'][0]['childId'])){
                         <th class="qty">Qty</th>
                         <th class="name">Desc</th>
                         <th class="price">Price</th>
-                        <td style="display:none;"><input type="text" class="numItemsOrderSummary" name="numItemsOrderSummary"></td>
-                        <td style="display:none;"><input type="text" class="cid" name="cid" value=<?php echo($_GET['cid'])?>></td>
+                        <td style="display:none;"><input type="hidden" class="numItemsOrderSummary" name="numItemsOrderSummary"></td>
+                        <td style="display:none;"><input type="hidden" class="cid" name="cid" value=<?php if(isset($_GET['cid'])){
+                            echo($_GET['cid']);
+                            $childID = $_GET['cid'];
+                        }else{
+                            echo($_SESSION['child'][0]['childId']);
+                            $childID = $_SESSION['child'][0]['childId'];
+                        } ?>></td>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,126 +65,148 @@ if(empty($_SESSION['child'][0]['childId'])){
                 <p>Total</p>
                 <h3><input type="text" class="total" name="ttlPrice" readonly></h3>
             </div>
+            
+        <!-- START ORDER DATE  -->
+            <div class="order-day">
+                <div class="order-day-content">
+                    <select id="drop-down-date" name="order-date" required>
+                        <option disabled selected value> -- choose a date -- </option>
+                        <!-- get oreder days for specific grade -->
+                        <?php 
+                        $gradeOrderDay = $_SESSION['child'][$posArray]['childGrade'];
+                        $orderDay = "";
+                        
+                        require "includes/order-get-days.inc.php";
+                        ?>
+                    </select>
+                    <?php
+                    // require "includes/order-get-days.inc.php";
+                    ?>
+                </div>
+            </div>
+
             <div>
                 <button type="submit" name="add-order-cart">Add Order To Cart</button>
             </div>
             </form>
         </div>
 
-    <!-- main order form -->
+    <!-- START ORDER FORM -->    
         <div class="main-order-container">
-            <div class="head-order-form">
-                <h2>Menu (Gr: <?php echo($_SESSION['child'][$posArray]['childGrade']);?>)</h2>
-                <!-- search bar -->
-                <input type="text" id="myInput" onkeyup="searchItem()" placeholder="Search for Item.." title="Type in a item">
-            </div>
-            <?php
-            require "includes/dbh.inc.php";
-            
-            $sql = "SELECT * FROM tblShopItems ";           
-            switch ($_SESSION['child'][$posArray]['childGrade']) {
-                case 'RR':
-                    $sql .= "WHERE isGrRRItem = 1 ";   
-                    break;
-                case 'R':
-                case '1':
-                case '2':  
-                    $sql .= "WHERE isGrRTo2Items = 1 ";
-                    break;
-                case '3':
-                case '4':
-                case '5':
-                case '6':
-                    $sql .= "WHERE isGr3AndUpItems = 1 ";
-                    break;
-                default:
-                    header("Location: ../children.php?error=nograde");
+            <div id="order-form">    
+                <div class="head-order-form">
+                    <h2>Menu (Gr: <?php echo($_SESSION['child'][$posArray]['childGrade']);?>)</h2>
+                    <!-- search bar -->
+                    <input type="text" id="myInput" onkeyup="searchItem()" placeholder="Search for Item.." title="Type in a item">
+                </div>
+                <?php
+                require "includes/dbh.inc.php";
+                
+                $sql = "SELECT * FROM tblShopItems ";           
+                switch ($_SESSION['child'][$posArray]['childGrade']) {
+                    case 'RR':
+                        $sql .= "WHERE isGrRRItem = 1 ";   
+                        break;
+                    case 'R':
+                    case '1':
+                    case '2':  
+                        $sql .= "WHERE isGrRTo2Items = 1 ";
+                        break;
+                    case '3':
+                    case '4':
+                    case '5':
+                    case '6':
+                        $sql .= "WHERE isGr3AndUpItems = 1 ";
+                        break;
+                    default:
+                        header("Location: ../children.php?error=nograde");
+                        exit();
+                }
+                $sql .= ";";
+                $stmt = mysqli_stmt_init($conn);
+                if (!mysqli_stmt_prepare($stmt, $sql)) {
+                    header("Location: ../children.php?errorlog=sqlerror");
                     exit();
-            }
-            $sql .= ";";
-            $stmt = mysqli_stmt_init($conn);
-            if (!mysqli_stmt_prepare($stmt, $sql)) {
-                header("Location: ../children.php?errorlog=sqlerror");
-                exit();
-            } else {
-                mysqli_stmt_execute($stmt);
-                $results = mysqli_stmt_get_result($stmt);
-                //SECURITY CHECK (no if statment checking if there are any rows)
-                // create an array
-                $arrProduct = array();   
-                $arrCategory = array();   
-                while ($row = mysqli_fetch_array($results)) {
-                    $arrProduct[] = $row; 
-                    $arrCategory[] = $row['categoryItem'];
-                }      
-                $arrUniqueCat = array_unique($arrCategory);
-            }
-            if (!empty($arrProduct)) { 
-                $countCat = 0;
-                $uniqueCat = "";
-                ?>
-                <!-- table for order form -->
-                <form>
-                    <table id="tblOrderForm">
-                        <thead class="heading-item">
-                            <tr>
-                                <th>Description</th>
-                                <th>Price</th>
-                                <th >Qty</th>
-                                <th style="width: 70px;">Total</th>
-                            </tr>
-                        </thead>
-                    <?php
-                    foreach($arrProduct as $key=>$value){
-                        if($uniqueCat !== $arrProduct[$key]["categoryItem"]){
-                            $uniqueCat = $arrProduct[$key]["categoryItem"];
-                            ?>
-                            <thead class="tableHead thItem">
+                } else {
+                    mysqli_stmt_execute($stmt);
+                    $results = mysqli_stmt_get_result($stmt);
+                    //SECURITY CHECK (no if statment checking if there are any rows)
+                    // create an array
+                    $arrProduct = array();   
+                    $arrCategory = array();   
+                    while ($row = mysqli_fetch_array($results)) {
+                        $arrProduct[] = $row; 
+                        $arrCategory[] = $row['categoryItem'];
+                    }      
+                    $arrUniqueCat = array_unique($arrCategory);
+                }
+                if (!empty($arrProduct)) { 
+                    $countCat = 0;
+                    $uniqueCat = "";
+                    ?>
+                    <!-- table for order form -->
+                    <form>
+                        <table id="tblOrderForm">
+                            <thead class="heading-item">
                                 <tr>
-                                    <th colspan="5"><h2><b><?php echo $uniqueCat?></b></h2></th>
+                                    <th>Description</th>
+                                    <th>Price</th>
+                                    <th >Qty</th>
+                                    <th style="width: 70px;">Total</th>
                                 </tr>
                             </thead>
-                            <tbody class="tableBody">
-                            <?php
-                        }else{
-                            $countCat++;
-                            // echo($countCat);
-                        }
-                ?>
-                    <tr class="product-item">
-                        <th class="product-id" style="display:none;"><?php echo $arrProduct[$key]["idItem"];?></th>
-                        <th class="product-title">
-                            <?php echo $arrProduct[$key]["nameItem"]; ?>
-                            <!-- add category for easy searching -->
-                            <span style="display: none;"> - <?php echo $arrProduct[$key]["categoryItem"]; ?></span>
-                        </th>
-                        <th class="product-price">R <span><?php echo $arrProduct[$key]["priceItem"]; ?></span></th>
-                        <th class="qty-action">
-                            <button type="button" id="sub" class="sub">-</button>
-                            <input type="number" name="quantity" class="product-quantity" id="count" value="0" min="0" max="20" readonly/>
-                            <button type="button" id="add" class="add">+</button>
-                        </th>
-                        <th class="total-product-price"><span></span></th>
-                    </tr>
-                <?php
-                    }   
+                        <?php
+                        foreach($arrProduct as $key=>$value){
+                            if($uniqueCat !== $arrProduct[$key]["categoryItem"]){
+                                $uniqueCat = $arrProduct[$key]["categoryItem"];
+                                ?>
+                                <thead class="tableHead thItem">
+                                    <tr>
+                                        <th colspan="5"><h2><b><?php echo $uniqueCat?></b></h2></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="tableBody">
+                                <?php
+                            }else{
+                                $countCat++;
+                                // echo($countCat);
+                            }
                     ?>
-                    <tfoot>
-                        <tr>
-                            <th class="no-results" colspan="4" style="display: none"><h1><i>No Results</i></h1></th>
+                        <tr class="product-item">
+                            <td class="product-id" style="display:none;"><?php echo $arrProduct[$key]["idItem"];?></td>
+                            <td class="product-title">
+                                <?php echo $arrProduct[$key]["nameItem"]; ?>
+                                <!-- add category for easy searching -->
+                                <span style="display: none;"> (<?php echo $arrProduct[$key]["categoryItem"]; ?>)</span>
+                            </td>
+                            <td class="product-price">R <span><?php echo $arrProduct[$key]["priceItem"]; ?></span></td>
+                            <td class="qty-action">
+                                <button type="button" id="sub" class="sub">-</button>
+                                <p class="product-quantity" id="count">0</p>
+                                <button type="button" id="add" class="add">+</button>
+                            </td>
+                            <td class="total-product-price"><span></span></td>
                         </tr>
-                    </tfoot>
-                    </table>
-                </form>
-                <?php
-            }
-            ?>
-        </div>
-
-        <!-- <?php echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';?> -->
+                    <?php
+                        }   
+                        ?>
+                        <tfoot>
+                            <tr>
+                                <th class="no-results" colspan="4" style="display: none"><h1><i>No Results</i></h1></th>
+                            </tr>
+                        </tfoot>
+                        </table>
+                    </form>
+                    <?php
+                }
+                ?>
+            </div><!--End of order form-->
+        </div><!--End of main container-->
 
     </main>
 
 <?php
+    echo($gradeOrderDay);
+    echo '<pre>'; print_r($listDays); echo '</pre>';
 require "footer.php";
 ?>

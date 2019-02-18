@@ -1,3 +1,8 @@
+:root{
+  --primary-color: rgb(35, 100, 185);
+  --primary-hover: rgb(29, 83, 153);
+}
+
 *, *:before, *:after {
   box-sizing: border-box;
 }
@@ -42,11 +47,11 @@
 }
 
 .tab-group li a:hover {
-  background: #179b77;
+  background: var(--primary-hover);
   color: #ffffff;
 }
 .tab-group .active a {
-  background: #1ab188;
+  background: var(--primary-color);
   color: #ffffff;
 } 
 
@@ -68,7 +73,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: .1em;
-  background: #1ab188;
+  background: var(--primary-color);
   color: #ffffff;
   transition: all 0.5s ease;
   -webkit-appearance: none;
@@ -76,7 +81,7 @@
   width:100%;
 }
 .form form button:hover{
-  background: #179b77;
+  background: var(--primary-hover);
   cursor: pointer;
 }
 
@@ -98,7 +103,7 @@
 }
 
 .forgot-password{
-  color: #179b77;
+  color: var(--primary-color);
   font-size: 20px;
   float: right;
   margin-bottom: 15px;
@@ -152,6 +157,10 @@
   /* margin-bottom: 20px; */
 }
 
+/* .form form .grade-container .drop-selector{
+  align-content: right; 
+} */
+
 .form form .drop-selector{
   display: inline-block;
   width: 70%;
@@ -175,10 +184,14 @@
 }
 
 .form form .class-heading{
-  display: inline-block;  
+  display: inline-block;
   font-size: 30px;
   margin-right: 53px;
   margin-top: 0;
   padding: 0;
 }
+/* 
+.form form .class-container .drop-selector{
+   display: inline-block; 
+} */
 

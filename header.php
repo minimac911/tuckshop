@@ -10,17 +10,20 @@ session_start();
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <script src="scripts/jquery.min.js"></script>
 
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/children.css">
     <link rel="stylesheet" href="css/order.css">
+    <link rel="stylesheet" href="css/checkout.css">
     <script src="scripts/login.js" type="text/javascript"> </script>    
     <script src="scripts/header.js" type="text/javascript"></script>    
     <script src="scripts/children.js" type="text/javascript"></script>    
     <script src="scripts/order.js" type="text/javascript"></script>    
     <script src="scripts/orderSearch.js" type="text/javascript"></script>    
+    <script src="scripts/checkout.js" type="text/javascript"></script>    
 
 </head>
 <body>
@@ -44,35 +47,40 @@ session_start();
         <nav class="nav-header-main">
             <!-- <a  href="#" >
                 <img src="img/logo.png" class="header-logo" alt="logo">
-            </a>
+            </a> -->
         
             <ul class="">
                 <li><a href="index.php">Home</a></li>
-                <li><a href="#">Portfolio</a></li>
-                <li><a href="#">About Me</a></li>
+                <li><a href="includes/order-prepare-form.inc.php?status=order">Order</a></li>
+                <li><a href="children.php">Children</a></li>
                 <li><a href="#">Contact</a></li>
-            </ul> -->
+            </ul>
         </nav>
+        
         <div class="header-login">
             <?php
             if (isset($_SESSION['userId'])) {
                 ?>  
                 <!-- <form action="includes/account-logout.inc.php" method="post">
-                    <button type="submit" name="logout-submit">Logout</button>
-                </form> -->
-                <div class="dropdown">
-                    Welcome back, <?php echo($_SESSION['userUid']);?>!
-                    <button onclick="showDrop()" id="myBtn" class="account-button dropbtn">Account</button>
-                    <div id="myDropdown" class="dropdown-content">
-                        <form action="" method="Post">
-                            <button type="submit" formaction="includes/order-prepare-form.inc.php" name="orderForm">Order Form</button>
-                            <a href="children.php" name="viewChildren">View Orders</a>
-                            <a href="children.php" name="viewChildren">View Children</a>
-                            <a href="children.php" name="viewChildren">Edit Account</a>
-                            <a href="includes/account-logout.inc.php" >Logout</a>
-                        </form>
-                    </div>
+                <button type="submit" name="logout-submit">Logout</button>
+            </form> -->
+            <div class="dropdown">
+                <div class="nav-checkout">
+                    <ul>
+                        <li><a href="checkout.php" name="viewChildren">Checkout</a></li>
+                    </ul>
                 </div>
+                <button onclick="showDrop()" id="myBtn" class="account-button dropbtn">Account</button>
+                <div id="myDropdown" class="dropdown-content">
+                    <form action="" method="Post">
+                        <!-- <button type="submit" formaction="includes/order-prepare-form.inc.php" name="orderForm">Order Form</button> -->
+                        <a href="invoices.php" name="viewChildren">Invoices</a>
+                        <!-- <a href="children.php" name="viewChildren">View Children</a> -->
+                        <a href="children.php" name="viewChildren">Edit Account</a>
+                        <a href="includes/account-logout.inc.php" >Logout</a>
+                    </form>
+                </div>
+            </div>
                 <!-- <button class="account-button" data-dropdown="drop1" aria-controls="drop1" aria-expanded="false">Account</button>
                 <ul id="drop1" data-dropdown-content class="f-dropdown" aria-hidden="true">
                     <li><a href="#">This is a link</a></li>

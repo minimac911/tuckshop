@@ -11,7 +11,9 @@ require 'includes/child-view.inc.php';
                 if (isset($_GET['status'])) {
                     if($_GET['status'] == "edit"){
                         echo ("Edit Children");
-                    }else {
+                    }elseif($_GET['status'] == "order"){
+                        echo "Choose Child For Order";
+                    }else{
                         echo ("View Children");
                     }
                 } else {
@@ -60,11 +62,17 @@ require 'includes/child-view.inc.php';
                                         Edit
                                     </button>
                                     <?php
+                                    }elseif(($_GET['status'] == "order")){
+                                        ?>
+                                        <button name="order-form-submit" type="submit"
+                                            formaction="includes/order-prepare-form.inc.php?cid=<?php echo $childId;?>"
+                                        >Order</button>
+                                        <?php
                                     }else{
-                                        header("Location: ERROR/404.php");
+                                        header("Location: index.php");
                                         exit();
                                     }
-                                } else {
+                                }else{
                                     ?>
                                     <button name="order-form-submit" type="submit"
                                         formaction="includes/order-prepare-form.inc.php?cid=<?php echo $childId;?>"

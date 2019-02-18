@@ -64,7 +64,7 @@ if (isset($_POST['update-child-submit'])) {
                             //execute sql statment for updating childs infomration
                             mysqli_stmt_bind_param($stmt, "ssssi", $newFirstName, $newLastName, $newGrade, $newClass, $childId);            
                             mysqli_stmt_execute($stmt);
-                            require 'child-session-id-add.inc.php';
+                            require 'session-add.inc.php';
                         }
                         header("Location: ../children.php?status=edit&success=updated");
                         exit();

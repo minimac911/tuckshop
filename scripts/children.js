@@ -1,5 +1,5 @@
 
-function Confirm(title, msg, $true, $false, $link) { /*change*/
+function Confirm(title, msg, $true, $false, $btnName, $link) { /*change*/
   var $content = "<div class='dialog-ovelay'>" +
     "<div class='dialog'><header>" +
         " <h3> " + title + " </h3> " +
@@ -11,7 +11,7 @@ function Confirm(title, msg, $true, $false, $link) { /*change*/
       "<footer>" +
         "<div class='controls'>" +
           "<form  method='post' autocomplete='off'>" +
-            " <button type='submit' formaction='"+$link+"' " +
+            " <button type='submit' name='"+$btnName+"' formaction='"+$link+"' " +
               "name='delete-child-submit' class='button button-danger doAction'>" +
                 $true + "</button> " +
             " <button class='button button-default cancelAction'>" + $false + "</button> " +

@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
+:root{
+    --primary-color: rgb(35, 100, 185);
+    --primary-hover: rgb(29, 83, 153);
+}
+
 *{
     margin: 0;
     margin-left: 5px;
@@ -17,6 +22,32 @@ header{
     height: 50px;
 }
 
+main button {
+    cursor: pointer;
+    position: relative;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    border: 0;
+    outline: none;
+    border-radius: 0;
+    /* padding: 15px 0; */
+    font-size: 2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    background: var(--primary-color);
+    color: #ffffff;
+    transition: all 0.5s ease;
+    -webkit-appearance: none;
+    display:block;
+    padding: 5px;
+}
+
+main button:hover {
+    background: var(--primary-hover);
+}
+
 .header-container{
     position: relative;
     left: 50%;
@@ -26,8 +57,11 @@ header{
     /* border-bottom: 1px solid rgba(0, 0, 0, 0.308); */
 
 }
+.nav-checkout{
+    float: left;
+}
 
-.nav-header-main li{
+.nav-header-main li, .nav-checkout li{
     position: relative;
     float: left;
     width: auto;
@@ -36,15 +70,22 @@ header{
     top: 50%;
 }
 
-.nav-header-main li a{
+.nav-checkout li{
+    float: left;
+}
+
+.nav-header-main li a, .nav-checkout li a{
     text-decoration: none;
     color: black;
     font-size: 25px;
 }
 
-.nav-header-main li a:visited{
+.nav-header-main li a:visited, .nav-checkout li a:visited{
     text-decoration: none;
     color: black;
+}
+.nav-checkout li a:hover{
+    background: inherit;
 }
 
 .header-logo{
@@ -56,9 +97,10 @@ header{
 }
 
 .header-login{
+    display: block;
     position: relative;
     float: right;
-    width: auto;
+    /* width: auto; */
     margin-top: 6.5px;
     /* display: block; */
 }
@@ -72,7 +114,7 @@ header{
 }
 
 .header-login form button, .header-login .nav-header-main a ,.btn-signup, .main-button{
-    background: #1ab188; 
+    background: var(--primary-color); 
     border: none;
     padding: 7px 15px;
     text-align: center;
@@ -84,13 +126,13 @@ header{
     transition-duration: 0.4s;
     cursor: pointer;
     color: white;
-    border-radius: 5%;
+    /* border-radius: 5%; */
 
     
 }
 
 .header-login form button:hover, .header-login a:hover, .main-button:hover {
-    background: #189e7a;
+    background: var(--primary-hover);
     color: #ffffff;
 }
 
@@ -115,7 +157,7 @@ header{
 } */
 
 .dropbtn {
-    background-color: #1ab188;
+    background-color: var(--primary-color);
     color: white;
     padding: 7px;
     font-size: 16px;
@@ -127,12 +169,13 @@ header{
   }
   .dropbtn:hover,
   .dropbtn:focus {
-    background: #189e7a;
+    background: var(--primary-hover);
     color: white;
   }
   .dropdown {
     position: relative;
-    display: inline-block;
+    /* display: inline-block; */
+    float: left;
   }
   .dropdown-content{
     display: none;
@@ -159,7 +202,7 @@ header{
     text-align: left;
   }
   .dropdown-content form a:hover, .dropdown-content form button:hover {
-    background-color: #1ab188;
+    background-color: var(--primary-hover);
     color: white;
   }
   .show {

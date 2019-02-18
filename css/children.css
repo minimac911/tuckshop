@@ -1,16 +1,14 @@
+:root{
+  --primary-color: rgb(35, 100, 185);
+  --primary-hover: rgb(29, 83, 153);
+}
+
 .main-child-container{
   padding: 20px;
 }
 
 .child1 { grid-area: child1; }
 .child2 { grid-area: child2; }
-
-.grid-container {
-  /* margin-right: 100px;
-  margin-left: 100px; */
-  
-
-}
 
 .child-info-conatiner{
   display: inline-block;
@@ -61,7 +59,7 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: .1em;
-    background: #1ab188;
+    background: var(--primary-color);
     color: #ffffff;
     transition: all 0.5s ease;
     -webkit-appearance: none;
@@ -71,6 +69,7 @@
 
 
 .child-info-conatiner .child-edit-button form button:hover{
+  background: var(--primary-hover);
   cursor: pointer;
 }
 
@@ -89,7 +88,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: .1em;
-  background: #1ab188;
+  background: var(--primary-color);
   color: #ffffff;
   transition: all 0.5s ease;
   -webkit-appearance: none;
@@ -97,6 +96,10 @@
   width:40%; 
   text-decoration: none;
   text-align: center;
+}
+
+.add-another .form-split a:hover, .main-child-container .children-buttons a:hover{ 
+  background: var(--primary-hover);
 }
 
 .main-child-container {
@@ -248,8 +251,4 @@ cursor: pointer
 .link {
 padding: 5px 10px;
 cursor: pointer
-}
-
-.child-edit-button form button{
-
 }

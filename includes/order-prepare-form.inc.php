@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_POST['order-form-submit']) || isset($_POST['orderForm'])) {
+if (isset($_POST['order-form-submit']) || isset($_POST['orderForm']) || isset($_GET['status'])) {
     session_start();
     if(empty($_SESSION['child'][0]['childId'])){
         header("Location: ../children.php");
@@ -24,6 +24,6 @@ if (isset($_POST['order-form-submit']) || isset($_POST['orderForm'])) {
     echo(time()+3600);
     // echo(strpos($_SERVER['REQUEST_URI'], "children.php"));
 } else {
-    header("Location: ../children.php");
+    header("Location: ../children.php?status=order");
     exit();
 }

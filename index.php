@@ -9,7 +9,7 @@
             }else{
                 echo '<p>You are logged out!</p>';
             }
-            echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
+            
 
         ?>
         <div class="items-container">

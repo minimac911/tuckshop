@@ -50,7 +50,7 @@ if (isset($_POST['add-child-submit'])) {
                     } else {
                         mysqli_stmt_bind_param($stmt, "i", $parentId);
                         mysqli_stmt_execute($stmt);
-                        require 'child-session-id-add.inc.php';
+                        require 'session-add.inc.php';
                     }
                     header("Location: ../add-child.php?add=success");
                     exit();

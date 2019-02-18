@@ -1,3 +1,8 @@
+:root{
+    --primary-color: rgb(35, 100, 185);
+    --primary-hover: rgb(29, 83, 153);
+}
+
 .order-form-change{
     display: block;
     text-align: center; 
@@ -20,17 +25,17 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: .1em;
-    background: #1ab188;
     color: #ffffff;
     transition: all 0.5s ease;
     -webkit-appearance: none;
     display:block;
     width:100%;
+    background: var(--primary-color);
+    cursor: pointer;
 }
 
-.order-form-change .order-form-change-button button{
-    background: #179b77;
-    cursor: pointer;
+.order-form-change .order-form-change-button button:hover{
+    background: var(--primary-hover);
 }
 
 .product-item .product-tile-footer{
@@ -106,4 +111,119 @@
 
 .main-order-container #tblOrderForm{
     width: 100%;
+}
+
+
+/* view orders */
+.main-view-order-container{
+    /* text-align: center; */
+    /* align-content: center; */
+    height: auto;
+    margin-left: 100px;
+    margin-right: 100px;
+    /* background-color: rgba(0, 0, 0, 0.144); */
+}
+
+.main-view-order-container h1{
+    text-align: center;
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.main-view-order-container .view-order-info-container, .view-order-pay-info{
+    display: inline-block;
+    width: 54%;
+    color: white;
+    /* min-height: 300px; */
+    height: auto;
+    background: rgba(19, 35, 47, 0.9);
+    padding: 40px;
+    margin: 10px 2px 10px 0px;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+
+  }
+
+.view-order-item-details{
+    width: 90%;
+}
+
+.view-order-item-details td{
+    width: 10%;
+}
+
+.view-order-item-details .price{
+    width: 25%;
+}
+
+.view-order-item-details .name{
+    width: 65%;
+}
+
+.main-view-order-container table{
+    text-align: center;
+    width: 100%;
+    font-size: 17px;
+}
+
+.main-view-order-container{
+    margin: 0;
+    height: auto;
+}
+
+.view-order-pay-container{
+    float: right;
+    width: 43%;
+    margin: 0;    
+}
+
+.view-order-pay-info{
+    width: 100%;     
+    background: var(--primary-color); 
+}
+
+.view-order-pay-info h2{
+    text-align: center;
+}
+
+/* .order-day{
+    text-align: center; 
+}
+
+.order-day-content{
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    width: 500px;
+} */
+
+.product-item .qty-action button{
+    text-align: center;
+    display: unset;
+    width: 25px;
+    height: 100%;
+    margin: 0;
+    font-size: 20px;
+    padding: 0;
+}
+
+.product-item .qty-action .product-quantity{
+    margin: 0;
+    /* margin-left:-3px;
+    margin-right:-3px; */
+    padding-right: 0;
+    width: 25px;
+    font-size: 17.5px;
+    height: 100%;
+    display: inline-block;
+    text-align: center; 
+}
+
+.product-item .qty-action{
+    text-align: center;
+    padding: auto;
+}
+
+.product-item td.qty-action{
+    height: 25%;
 }

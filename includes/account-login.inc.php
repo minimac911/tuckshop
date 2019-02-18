@@ -50,7 +50,7 @@ if (isset($_POST['login-submit'])) {
                                 header("Location: ../add-child.php?error=nochild");
                                 exit();
                             } else {
-                                require 'child-session-id-add.inc.php';
+                                require 'session-add.inc.php';
                             }
                         }
                     }
