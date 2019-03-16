@@ -67,7 +67,7 @@ main button:hover {
     width: auto;
     height: auto;
     list-style-type: none;
-    top: 50%;
+    /* top: 50%; */
 }
 
 .nav-checkout li{
@@ -101,7 +101,7 @@ main button:hover {
     position: relative;
     float: right;
     /* width: auto; */
-    margin-top: 6.5px;
+    /* margin-top: 6.5px; */
     /* display: block; */
 }
 

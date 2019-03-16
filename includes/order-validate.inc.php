@@ -3,7 +3,7 @@
 // function to check if the items that are going to be added to cart are valid and 
 // have not been altered
 function validOrderAddCart($e){
-    require 'dbh.inc.php';
+    require_once 'dbh.inc.php';
     //count the amount of rows in query
     $sql = "SELECT COUNT(idItem) as numItem FROM `tblshopitems` WHERE";
 

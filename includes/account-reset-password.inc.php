@@ -16,7 +16,7 @@ if (isset($_POST["reset-password-submit"])) {
 
     $currentDate = date("U");
 
-    require 'dbh.inc.php';
+    require_once 'dbh.inc.php';
 
     //use place holder for variables that the user inputs
     //to avoid SQL injection

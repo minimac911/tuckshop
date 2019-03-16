@@ -3,11 +3,11 @@
 // function to check if the items that are going to be added to cart are valid and 
 // have not been altered
 function validCheckOut($e){
-    require 'dbh.inc.php';
+    require_once 'dbh.inc.php';
     //count the amount of rows in query
     $sql = "SELECT COUNT(idOrder) as numItem FROM `tblorders` WHERE";
 
-    for($i = 0; $i < sizeof($e); $i++){
+    for($i = 0; $i < count($e); $i++){
         $sql .= " (idOrder = ? AND dueDate = ? AND totalPrice = ? AND idParent = ?) OR";
     }
     $sql = substr($sql, 0, -2).";";
@@ -22,7 +22,7 @@ function validCheckOut($e){
         $a = "";
         $b = "";
         
-        for($i = 0; $i < sizeof($e); $i++){
+        for($i = 0; $i < count($e); $i++){
             $a .= "isdi";
             $a_bind_params[] = $e[$i]["id"];
             $a_bind_params[] = date("Y-m-d",strtotime($e[$i]["date"]));
@@ -64,8 +64,8 @@ function validCheckOut($e){
         $row = mysqli_fetch_row($results);
 
         print_r($row);
-        echo(sizeof($e));
-        if($row[0] == sizeof($e)){
+        echo(count($e));
+        if($row[0] == count($e)){
             return 1;
         }
     }

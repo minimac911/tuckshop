@@ -1,7 +1,7 @@
 <?php
-require "header.php";
-require "includes/account-verify-session.inc.php";
-require "includes/checkout-view.inc.php";
+require_once "header.php";
+require_once "includes/account-verify-session.inc.php";
+require_once "includes/checkout-view.inc.php";
 
 
 unset($_SESSION['checkoutARR']);    
@@ -42,7 +42,7 @@ unset($_SESSION['checkoutARR']);
             <!-- show orders that are in cart -->
             <div class="grid-container">
                 <?php
-                if (sizeof($arrOrders) == 0) {
+                if (count($arrOrders) == 0) {
                     echo ("<h2>You have no orders in checkout area!</h2>");
                 } else {
                     // loop through each childs order
@@ -158,5 +158,5 @@ unset($_SESSION['checkoutARR']);
     
 <?php
         // echo '<pre>' . print_r($arrOrders, TRUE) . '</pre>';
-require "footer.php";
+require_once "footer.php";
 ?>

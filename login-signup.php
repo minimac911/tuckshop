@@ -1,12 +1,12 @@
 <?php
-require "header.php";
+require_once "header.php";
 ?>
 
     <main>
         <div class="form-grid">
             <ul class="tab-group">
-                <li id="tabSign" class="tab active"><a href="javascript:switchVisible('s')">Sign Up</a></li>
-                <li id="tabLog" class="tab"><a href="javascript:switchVisible('l')">Log In</a></li>
+                <li id="tabSign" class="tab active"><button onclick="javascript:switchVisible('s')">Sign Up</a></li>
+                <li id="tabLog" class="tab"><button onclick="javascript:switchVisible('l')">Log In</a></li>
             </ul>
             
             <div class="tab-content">
@@ -35,7 +35,8 @@ require "header.php";
                             $email = $_GET['mail'];
                         } else if ($_GET['error'] == "userntaken") {
                             echo '<p class="signup-error">Username is already taken!</p>';
-                            $email = $_GET['mail'];
+                        } else if ($_GET['error'] == "emailtaken") {
+                            echo '<p class="signup-error">E-Mail is already taken!</p>';
                         }
                     } elseif (isset($_GET['signup']) == "success") {
                         echo '<p class="signup-success">Signup Succesfull!</p>';
@@ -43,10 +44,10 @@ require "header.php";
                     ?>
                     <div class="form">
                         <form action="includes/account-signup.inc.php" method="post" autocomplete="off">
-                            <input class="username" type="text" name="uid" placeholder="Username" value="<?php echo $username; ?>" required>
-                            <input class="email" type="text" name="mail" placeholder="Email" value="<?php echo $email; ?>" required> 
-                            <input class="password" type="password" name="pwd" placeholder="Password" required>
-                            <input class="repeat-password" type="password" name="pwd-repeat" placeholder="Repeat Password" required >
+                            <input class="username" type="text" name="uid" placeholder="Username" value="<?php echo $username; ?>" require_onced>
+                            <input class="email" type="text" name="mail" placeholder="Email" value="<?php echo $email; ?>" require_onced> 
+                            <input class="password" type="password" name="pwd" placeholder="Password" require_onced>
+                            <input class="repeat-password" type="password" name="pwd-repeat" placeholder="Repeat Password" require_onced >
                             <button  type="submit" name="signup-submit">Signup</button>
                         </form>
                     </div>
@@ -87,5 +88,5 @@ require "header.php";
     </main>
 
 <?php
-require "footer.php";
+require_once "footer.php";
 ?>

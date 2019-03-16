@@ -1,7 +1,7 @@
 <?php
 
-require 'dbh.inc.php';
-require 'checkout-expire.inc.php';
+require_once 'dbh.inc.php';
+require_once 'checkout-expire.inc.php';
 //geting the orders information from tblorders
 //getting the items info from tblshopitems
 //geting items in order from tblorder_cart

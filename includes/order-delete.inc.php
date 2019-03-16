@@ -1,7 +1,9 @@
 <?php
 session_start();
+
 function deleteOrdersByCid($childId){
-    require 'dbh.inc.php';
+    $conn = null;    
+    require_once 'dbh.inc.php';
     //delete any orders that have been placed for child
     $sql = "DELETE FROM tblorder_cart WHERE idOrder IN (SELECT idOrder FROM tblorders WHERE idChild = ?);";
     $stmt = mysqli_stmt_init($conn);
@@ -27,7 +29,8 @@ function deleteOrdersByCid($childId){
 
 // delete orders via order id
 function deleteOrdersByOrderId($orderId){
-    require 'dbh.inc.php';
+    $conn = null;
+    require_once 'dbh.inc.php';
     //delete any orders that have been placed for child
     $sql = "DELETE FROM tblorder_cart WHERE idOrder = ?;";
     $stmt = mysqli_stmt_init($conn);

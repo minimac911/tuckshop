@@ -2,7 +2,7 @@
 
 if (isset($_POST['add-order-cart'])) {
     session_start();
-    require 'dbh.inc.php';
+    require_once 'dbh.inc.php';
 
     //storing the information that the user enter
     $numItems = $_POST['numItemsOrderSummary'];
@@ -19,7 +19,7 @@ if (isset($_POST['add-order-cart'])) {
         $items = array();
 
         $ttlPrice = 0;
-        require "order-placed.inc.php";
+        require_once "order-placed.inc.php";
         //check that there isnt already an order placed for that day by the child
         if(dayFree($cid,$orderDate)){
             for($i = 0; $i < $numItems; $i++){
@@ -31,7 +31,7 @@ if (isset($_POST['add-order-cart'])) {
                 $items[$i] = $itemDetails;
             }
 
-            require "order-validate.inc.php";
+            require_once "order-validate.inc.php";
             echo validOrderAddCart($items);
             // checking if the details of the order is valid
             if(validOrderAddCart($items)){
@@ -76,7 +76,7 @@ if (isset($_POST['add-order-cart'])) {
                                 mysqli_stmt_bind_param($stmt, "iii", $items[$key]["id"], $items[$key]["qty"],  $items[$key]["price"]);            
                                 mysqli_stmt_execute($stmt);
                             }
-                            require 'session-add.inc.php';
+                            require_once 'session-add.inc.php';
                             header("Location: ../checkout.php?add=success");
                             exit();
                         }

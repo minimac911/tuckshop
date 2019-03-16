@@ -1,7 +1,8 @@
 <?php
-require "header.php";
+require_once "header.php";
 //error checking
-require "includes/account-verify-session.inc.php";
+require_once "includes/account-verify-session.inc.php";
+require_once 'includes/verify-account.inc.php';
 if(empty($_SESSION['child'][0]['childId'])){
     header ("Location: children.php");
     exit();
@@ -15,9 +16,14 @@ if(empty($_SESSION['child'][0]['childId'])){
                 $count = 0;
                 $found = false;
                 $posArray = 0;
-                while($count<sizeof($_SESSION['child']) && $found != true){
+                while($count<count($_SESSION['child']) && $found != true){
                     if(isset($_GET['cid'])){
-                        if($_SESSION['child'][$count]['childId'] == $_GET['cid']){
+                        $childID = $_GET['cid'];
+
+                        if(!isValidChilID($childID)){
+                            header("Location: children.php?error=notchild");
+                            exit();
+                        }else if($_SESSION['child'][$count]['childId'] == $childID){
                             $found = true;
                             $posArray = $count;
                             echo($_SESSION['child'][$count]['childFirstName']." ".$_SESSION['child'][$count]['childLastName']);
@@ -51,6 +57,12 @@ if(empty($_SESSION['child'][0]['childId'])){
                         <td style="display:none;"><input type="hidden" class="cid" name="cid" value=<?php if(isset($_GET['cid'])){
                             echo($_GET['cid']);
                             $childID = $_GET['cid'];
+                            
+                            // require_once "includes/verify-account.inc.php";
+                            if(!isValidChilID($childID)){  
+                                header("Location: children.php?error=nochild");
+                                exit();
+                            }
                         }else{
                             echo($_SESSION['child'][0]['childId']);
                             $childID = $_SESSION['child'][0]['childId'];
@@ -69,18 +81,18 @@ if(empty($_SESSION['child'][0]['childId'])){
         <!-- START ORDER DATE  -->
             <div class="order-day">
                 <div class="order-day-content">
-                    <select id="drop-down-date" name="order-date" required>
+                    <select id="drop-down-date" name="order-date" require_onced>
                         <option disabled selected value> -- choose a date -- </option>
                         <!-- get oreder days for specific grade -->
                         <?php 
                         $gradeOrderDay = $_SESSION['child'][$posArray]['childGrade'];
                         $orderDay = "";
                         
-                        require "includes/order-get-days.inc.php";
+                        require_once "includes/order-get-days.inc.php";
                         ?>
                     </select>
                     <?php
-                    // require "includes/order-get-days.inc.php";
+                    // require_once "includes/order-get-days.inc.php";
                     ?>
                 </div>
             </div>
@@ -100,7 +112,7 @@ if(empty($_SESSION['child'][0]['childId'])){
                     <input type="text" id="myInput" onkeyup="searchItem()" placeholder="Search for Item.." title="Type in a item">
                 </div>
                 <?php
-                require "includes/dbh.inc.php";
+                require_once "includes/dbh.inc.php";
                 
                 $sql = "SELECT * FROM tblShopItems ";           
                 switch ($_SESSION['child'][$posArray]['childGrade']) {
@@ -208,5 +220,5 @@ if(empty($_SESSION['child'][0]['childId'])){
 <?php
     echo($gradeOrderDay);
     echo '<pre>'; print_r($listDays); echo '</pre>';
-require "footer.php";
+require_once "footer.php";
 ?>

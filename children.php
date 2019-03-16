@@ -1,7 +1,7 @@
 <?php
-require "header.php";
-require "includes/account-verify-session.inc.php";   
-require 'includes/child-view.inc.php';
+require_once "header.php";
+require_once "includes/account-verify-session.inc.php";   
+require_once 'includes/child-view.inc.php';
 ?>
 
     <main>
@@ -26,10 +26,10 @@ require 'includes/child-view.inc.php';
                 // echo sizeof($arrChild);
                 ?><?php
                     $count = 0;
-                    if(sizeof($arrChild)<=0){
+                    if(count($arrChild)<=0){
                         echo("<h2>You have no children added!</h2>");
                     }else{
-                        for ($i = 0; $i < sizeof($arrChild); $i++) {
+                        for ($i = 0; $i < count($arrChild); $i++) {
                             $child = $arrChild[$i];
                             $childId = $child[0];
                             $firstName = $child[1];
@@ -110,7 +110,7 @@ require 'includes/child-view.inc.php';
                         <?php
                     }
                 }else{
-                    if(sizeof($arrChild)>0){
+                    if(count($arrChild)>0){
                         ?>
                         <div class="edit-child-button">
                             <a href="children.php?status=edit">edit</a>
@@ -131,5 +131,5 @@ require 'includes/child-view.inc.php';
     </main>
 
 <?php
-require "footer.php";
+require_once "footer.php";
 ?>

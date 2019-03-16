@@ -9,11 +9,14 @@ if (isset($_POST['order-form-submit']) || isset($_POST['orderForm']) || isset($_
         //make sure that there is a child id for the url
         if(isset($_GET['cid'])){
             $childId = $_GET['cid'];
+
+            require_once 'verify-account.inc.php';   
+            if(!isValidChilID($childId)){
+                header("Location: ../children.php?error=notchild");
+                exit();
+            }
         }else{
             $childId = $_SESSION['child'][0]['childId'];
-            if(isset($_GET['cid'])){
-                $childId = $_GET['cid'];
-            }
             echo($childId);
         }
         header("Location: ../order-form.php?cid=".$childId);

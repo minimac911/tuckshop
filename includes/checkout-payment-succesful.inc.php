@@ -3,18 +3,18 @@
 
 if(isset($_GET['oid'])){
     session_start();
-    require 'dbh.inc.php';
+    require_once 'dbh.inc.php';
 
     $s = $_GET['oid'];
     $a = "";
 
     $arrOID = explode("-",$s);
-    $sql = "INSERT INTO tblinvoice (idOrder, datePaid, idParent) VALUES";
+    $sql = "INSERT INTO tblinvoice (idOrder, datePaid) VALUES";
     foreach ($arrOID as $k => $v) {
-        $sql .= "( ?, now(), ?),";  
-        $a .= "ii";
+        $sql .= "( ?, now()),";  
+        $a .= "i";
         $a_bind_params[] = $v;
-        $a_bind_params[] = $_SESSION['userId'];
+        // $a_bind_params[] = $_SESSION['userId'];
     } 
     $sql = substr($sql, 0, -1);
 
@@ -53,11 +53,11 @@ if(isset($_GET['oid'])){
         $sql = "UPDATE tblorders SET paid = 1 WHERE ";
         $a = "";
         foreach ($arrOID as $k => $v) {
-            $sql .= "idOrder = ? OR";  
+            $sql .= "idOrder = ? OR ";  
             $a .= "i";
             $a_bind_params[] = $v;
         } 
-        $sql = substr($sql, 0, -2);
+        $sql = substr($sql, 0, -3);
 
         $a_param_type = str_split($a);
         /* Bind parameters. Types: s = string, i = integer, d = double,  b = blob */

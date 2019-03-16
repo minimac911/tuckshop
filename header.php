@@ -13,11 +13,13 @@ session_start();
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
     <script src="scripts/jquery.min.js"></script>
 
+    <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/children.css">
     <link rel="stylesheet" href="css/order.css">
     <link rel="stylesheet" href="css/checkout.css">
+    <link rel="stylesheet" href="css/invoices.css">
     <script src="scripts/login.js" type="text/javascript"> </script>    
     <script src="scripts/header.js" type="text/javascript"></script>    
     <script src="scripts/children.js" type="text/javascript"></script>    
@@ -49,11 +51,11 @@ session_start();
                 <img src="img/logo.png" class="header-logo" alt="logo">
             </a> -->
         
-            <ul class="">
+            <ul class="header-buttons">
                 <li><a href="index.php">Home</a></li>
                 <li><a href="includes/order-prepare-form.inc.php?status=order">Order</a></li>
                 <li><a href="children.php">Children</a></li>
-                <li><a href="#">Contact</a></li>
+                <!-- <li><a href="#">Contact</a></li> -->
             </ul>
         </nav>
         

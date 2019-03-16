@@ -1,6 +1,6 @@
 <?php
 
-require 'dbh.inc.php';
+require_once 'dbh.inc.php';
 
 $sql = "SELECT class, day FROM tblorder_days WHERE grade = ?;";
 $stmt = mysqli_stmt_init($conn);

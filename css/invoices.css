@@ -1,0 +1,16 @@
+.invoice-main-container{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.invoice-main-container .invoice-upcoming,.invoice-main-container .invoice-history{
+    text-align: center;
+    padding: 20px;  
+}
+
+.invoice-main-container .invoice-upcoming table,.invoice-main-container .invoice-history table{
+    margin-left:auto; 
+    margin-right:auto;
+    width: 70%;
+}

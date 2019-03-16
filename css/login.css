@@ -30,7 +30,7 @@
   margin: 0;
 }
 
-.tab-group li a {
+.tab-group li button {
   display: block;
   text-decoration: none;
   padding: 15px;
@@ -46,11 +46,11 @@
   float: left;
 }
 
-.tab-group li a:hover {
+.tab-group li button:hover {
   background: var(--primary-hover);
   color: #ffffff;
 }
-.tab-group .active a {
+.tab-group .active button {
   background: var(--primary-color);
   color: #ffffff;
 } 

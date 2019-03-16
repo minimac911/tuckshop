@@ -2,7 +2,7 @@
 
 //function to get boolean if order has already been placed for that day by the child
 function dayFree($childId, $date){
-    require 'dbh.inc.php';
+    require_once 'dbh.inc.php';
 
     //sql statment
     $sql = "SELECT dueDate from tblorders where idChild = ?";

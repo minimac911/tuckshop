@@ -1,6 +1,6 @@
 <?php
-require "header.php";
-require "includes/account-verify-session.inc.php";
+require_once "header.php";
+require_once "includes/account-verify-session.inc.php";
 ?>
 
     <main>
@@ -29,12 +29,12 @@ require "includes/account-verify-session.inc.php";
                         ?>
                         <form action="includes/child-add.inc.php" method="post" autocomplete="off">
                             <div class="form-split">
-                                <input type="text" name="firstName" placeholder="First Name" required> 
-                                <input type="text" name="lastName" placeholder="Last Name" required> 
+                                <input type="text" name="firstName" placeholder="First Name" require_onced> 
+                                <input type="text" name="lastName" placeholder="Last Name" require_onced> 
                             </div>
                             <div class="grade-container">
                                 <p class="grade-heading">Grade: </p>
-                                <select id="drop-down-grade" name="grade" class="drop-selector" onchange="changeOptions()" required>
+                                <select id="drop-down-grade" name="grade" class="drop-selector" onchange="changeOptions()" require_onced>
                                     <option disabled selected value> -- select an option -- </option>
                                     <option value="RR">RR</option>
                                     <option value="R">R</option>
@@ -49,7 +49,7 @@ require "includes/account-verify-session.inc.php";
 
                             <div class="class-container">
                                 <p class="class-heading">Class: </p>
-                                <select id="drop-down-class" name="class" class="drop-selector" required>
+                                <select id="drop-down-class" name="class" class="drop-selector" require_onced>
                                     <option disabled selected value> -- select an option -- </option>
                                     <option value="hedgehogs">Hedgehogs</option>
                                     <option value="squirrel">Squirrel</option>
@@ -67,5 +67,5 @@ require "includes/account-verify-session.inc.php";
     </main>
 
 <?php
-    require "footer.php";
+    require_once "footer.php";
 ?>

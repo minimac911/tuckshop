@@ -1,8 +1,12 @@
 <?php
 
-require 'dbh.inc.php';
+require_once 'dbh.inc.php';
 
-$sql = "SELECT * FROM tblinvoice WHERE idParent = ?;";
+$sql = "SELECT * FROM ((tblinvoice 
+    INNER JOIN tblorders ON tblinvoice.idOrder = tblorders.idOrder)
+    INNER JOIN tblchildren ON tblorders.idChild = tblchildren.idChild)
+    WHERE tblorders.idParent = ?
+    ORDER BY tblinvoice.datePaid DESC;";
 $stmt = mysqli_stmt_init($conn);
 if (!mysqli_stmt_prepare($stmt, $sql)) {
     header("Location: ../children.php?errorlog=sqlerror");
@@ -17,5 +21,5 @@ if (!mysqli_stmt_prepare($stmt, $sql)) {
     while ($row = mysqli_fetch_array($results)) {
         $arrChild[] = $row;
     }      
-    echo '<pre>'; print_r($arrChild); echo '</pre>';
+    // echo '<pre>'; print_r($arrChild); echo '</pre>';
 }

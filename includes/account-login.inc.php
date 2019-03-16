@@ -2,7 +2,7 @@
 
 if (isset($_POST['login-submit'])) {
 
-    require 'dbh.inc.php';
+    require_once 'dbh.inc.php';
 
     $mailuid = $_POST['uid'];
     $password = $_POST['pwd'];
@@ -50,7 +50,7 @@ if (isset($_POST['login-submit'])) {
                                 header("Location: ../add-child.php?error=nochild");
                                 exit();
                             } else {
-                                require 'session-add.inc.php';
+                                require_once 'session-add.inc.php';
                             }
                         }
                     }

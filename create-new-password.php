@@ -1,5 +1,5 @@
 <?php
-require "header.php";
+require_once "header.php";
 ?>
 
     <main>
@@ -18,8 +18,8 @@ require "header.php";
                     <form action="includes/account-reset-password.inc.php" method="post" autocomplete="off">
                         <input type="hidden" name="selector" value="<?php echo $selector;?>"> 
                         <input type="hidden" name="validator" value="<?php echo $validator;?>"> 
-                        <input class="password" type="password" name="pwd" placeholder="Enter a New Password" required>
-                        <input class="repeat-password" type="password" name="pwd-repeat" placeholder="Repeat new Password" required >
+                        <input class="password" type="password" name="pwd" placeholder="Enter a New Password" require_onced>
+                        <input class="repeat-password" type="password" name="pwd-repeat" placeholder="Repeat new Password" require_onced >
                         <button type="submit" name="reset-password-submit">Reset password</button>
                     </form>
                 </div>
@@ -34,5 +34,5 @@ require "header.php";
     </main>
 
 <?php
-require "footer.php";
+require_once "footer.php";
 ?>

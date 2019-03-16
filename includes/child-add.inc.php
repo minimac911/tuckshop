@@ -2,7 +2,7 @@
 
 if (isset($_POST['add-child-submit'])) {
     session_start();
-    require 'dbh.inc.php';
+    require_once 'dbh.inc.php';
 
     //storing the information that the user enter
     $firstName = $_POST['firstName'];
@@ -50,7 +50,7 @@ if (isset($_POST['add-child-submit'])) {
                     } else {
                         mysqli_stmt_bind_param($stmt, "i", $parentId);
                         mysqli_stmt_execute($stmt);
-                        require 'session-add.inc.php';
+                        require_once 'session-add.inc.php';
                     }
                     header("Location: ../add-child.php?add=success");
                     exit();

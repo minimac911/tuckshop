@@ -20,7 +20,7 @@ if (isset($_POST['check-pay'])) {
             $orders[$i] = $orderDetails;
         }
 
-        require "checkout-validate.inc.php";
+        require_once "checkout-validate.inc.php";
         // make sure that the user has not tried to change anything
         if(validCheckOut($orders)){
             $s = "Location: checkout-payment-succesful.inc.php?oid=";

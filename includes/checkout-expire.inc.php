@@ -1,6 +1,6 @@
 <?php
 
-require 'dbh.inc.php';
+require_once 'dbh.inc.php';
 
 $sql = "UPDATE tblorders SET expired = 1 WHERE dueDate <= now()";
     

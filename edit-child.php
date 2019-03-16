@@ -1,6 +1,6 @@
 <?php
-require "header.php";
-require "includes/account-verify-session.inc.php";
+require_once "header.php";
+require_once "includes/account-verify-session.inc.php";
 
 ?>
 
@@ -37,12 +37,12 @@ require "includes/account-verify-session.inc.php";
                 ?>
                 <form  method="post" autocomplete="off">
                     <div class="form-split">
-                        <input type="text" name="firstName" placeholder="First Name" value="<?php echo $fName?>" required> 
-                        <input type="text" name="lastName" placeholder="Last Name" value="<?php echo $lName?>" required> 
+                        <input type="text" name="firstName" placeholder="First Name" value="<?php echo $fName?>" require_onced> 
+                        <input type="text" name="lastName" placeholder="Last Name" value="<?php echo $lName?>" require_onced> 
                     </div>
                     <div class="grade-container">
                         <p class="grade-heading">Grade: </p>
-                        <select id="drop-down-grade" name="grade" class="drop-selector" onchange="changeOptions()" required>
+                        <select id="drop-down-grade" name="grade" class="drop-selector" onchange="changeOptions()" require_onced>
                         <?php 
                         $output = "<option value='RR' >RR</option>
                             <option value='R'  >R</option>
@@ -62,7 +62,7 @@ require "includes/account-verify-session.inc.php";
 
                     <div class="class-container">
                         <p class="class-heading">Class: </p>
-                        <select id="drop-down-class" name="class" class="drop-selector" required>
+                        <select id="drop-down-class" name="class" class="drop-selector" require_onced>
                             <!-- getting the classes for the grade of the child that is 
                             being eddited -->
                             <!-- give the class also the class, this will set the option as selected -->
@@ -103,5 +103,5 @@ require "includes/account-verify-session.inc.php";
 </main>
 
 <?php
-require "footer.php";
+require_once "footer.php";
 ?>

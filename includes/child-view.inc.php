@@ -1,6 +1,6 @@
 <?php
 
-require 'dbh.inc.php';
+require_once 'dbh.inc.php';
 
 $sql = "SELECT * FROM tblChildren WHERE idUsers = ?;";
 $stmt = mysqli_stmt_init($conn);
