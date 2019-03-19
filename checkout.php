@@ -1,7 +1,7 @@
 <?php
-require_once "header.php";
-require_once "includes/account-verify-session.inc.php";
-require_once "includes/checkout-view.inc.php";
+require "header.php";
+require "includes/account-verify-session.inc.php";
+require "includes/checkout-view.inc.php";
 
 
 unset($_SESSION['checkoutARR']);    
@@ -158,5 +158,5 @@ unset($_SESSION['checkoutARR']);
     
 <?php
         // echo '<pre>' . print_r($arrOrders, TRUE) . '</pre>';
-require_once "footer.php";
+require "footer.php";
 ?>

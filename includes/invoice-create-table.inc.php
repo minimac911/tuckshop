@@ -2,11 +2,11 @@
 
 function generateOutput($v){
     $output = "<tr>"
-            ."<td>".$v['idInovice']."</td>"
+            ."<td>".$v['idInvoice']."</td>"
             ."<td>".$v['idOrder']."</td>"
             // echo "<td>".$value['idParent']."</td>";
             ."<td>".$v['firstNameChild']." ".$v['lastNameChild']."</td>"
-            . "<td>".$v['dueDate']."</td>"
+            . "<td>".date("l, d-M-Y",strtotime($v['dueDate']))."</td>"
             . "<td>".$v['datePaid']."</td>"
             . "<td>".$v['paid']."</td>"
             . "<td>".'R '.sprintf("%.2f", $v['totalPrice'])."</td>"
@@ -22,7 +22,7 @@ function creatInvoiceTable($isUpcoming,$arrChild){
         ."<th>".'Order ID'."</th>"
         // echo "<td>".'idParent'."</td>";
         . "<th>".'Name'."</th>"
-        ."<th>".'Due Date'."</th>"
+        ."<th>".'Collection Date'."</th>"
         ."<th>".'Date Paid'."</th>"
         . "<th>".'Status'."</th>"
         . "<th>".'Amount'."</th>"

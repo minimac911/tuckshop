@@ -4,7 +4,7 @@ session_start();
 
 
 //add childrens id to the session
-$sql = "SELECT * FROM tblChildren WHERE idUsers = ?;";
+$sql = "SELECT * FROM tblChildren WHERE idUser = ?;";
 $stmt = mysqli_stmt_init($conn);
 
 if (!mysqli_stmt_prepare($stmt, $sql)) {

@@ -10,7 +10,7 @@ if (isset($_POST['order-form-submit']) || isset($_POST['orderForm']) || isset($_
         if(isset($_GET['cid'])){
             $childId = $_GET['cid'];
 
-            require_once 'verify-account.inc.php';   
+            require 'verify-account.inc.php';   
             if(!isValidChilID($childId)){
                 header("Location: ../children.php?error=notchild");
                 exit();

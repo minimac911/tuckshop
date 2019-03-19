@@ -1,9 +1,16 @@
 <?php
 
-$servername = "localhost";
+// $servername = "localhost";
+// $dBUsername = "root";
+// $dBPassword = "";
+// $dBName = "dbtuckshop";
+
+// $conn = mysqli_connect($servername, $dBUsername, $dBPassword, $dBName);
+
+$servername = "localhost:2206";
 $dBUsername = "root";
-$dBPassword = "";
-$dBName = "loginsystem";
+$dBPassword = "admin";
+$dBName = "dbtuckshop";
 
 $conn = mysqli_connect($servername, $dBUsername, $dBPassword, $dBName);
 

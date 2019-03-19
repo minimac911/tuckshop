@@ -3,7 +3,7 @@
 // function to check if the items that are going to be added to cart are valid and 
 // have not been altered
 function validCheckOut($e){
-    require_once 'dbh.inc.php';
+    require 'dbh.inc.php';
     //count the amount of rows in query
     $sql = "SELECT COUNT(idOrder) as numItem FROM `tblorders` WHERE";
 
@@ -25,7 +25,9 @@ function validCheckOut($e){
         for($i = 0; $i < count($e); $i++){
             $a .= "isdi";
             $a_bind_params[] = $e[$i]["id"];
-            $a_bind_params[] = date("Y-m-d",strtotime($e[$i]["date"]));
+            //add 7 hours because it is going to be cut off at 7
+            $a_bind_params[] = date("Y-m-d H:i:s",strtotime("+7 hour",strtotime($e[$i]["date"])));
+            
             $a_bind_params[] = $e[$i]["subTotal"];
             $a_bind_params[] = $e[$i]["pid"];
         }

@@ -2,7 +2,7 @@
 
 if (isset($_POST['update-child-submit'])) {
     session_start();
-    require_once 'dbh.inc.php';
+    require 'dbh.inc.php';
 
     //check that url is correct
     if (isset($_GET['cid']) && isset($_GET['fn']) && isset($_GET['ln'])
@@ -10,7 +10,7 @@ if (isset($_POST['update-child-submit'])) {
             //childs id in DB
         $childId = $_GET['cid'];
         
-        require_once 'verify-account.inc.php';
+        require 'verify-account.inc.php';
         if(isValidChilID($childId)){
             //orginal values for the child before edit
             $orgFirstName = $_GET['fn'];
@@ -66,7 +66,7 @@ if (isset($_POST['update-child-submit'])) {
                                 //execute sql statment for updating childs infomration
                                 mysqli_stmt_bind_param($stmt, "ssssi", $newFirstName, $newLastName, $newGrade, $newClass, $childId);            
                                 mysqli_stmt_execute($stmt);
-                                require_once 'session-add.inc.php';
+                                require 'session-add.inc.php';
                             }
                             header("Location: ../children.php?status=edit&success=updated");
                             exit();

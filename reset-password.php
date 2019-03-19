@@ -1,5 +1,5 @@
 <?php
-require_once "header.php";
+require "header.php";
 ?>
 
     <main>
@@ -21,7 +21,7 @@ require_once "header.php";
                     An email will be sent to you with further instructions on reseting your password!
                 </p>
                 <form action="includes/account-reset-request.inc.php" method="post" autocomplete="off">
-                    <input class="email" type="email" name="mail" placeholder="Enter your email address..." require_onced> 
+                    <input class="email" type="email" name="mail" placeholder="Enter your email address..." required> 
                     <button type="submit" name="reset-request-submit">Reset password!</button>
                 </form>
                 <?php
@@ -34,5 +34,5 @@ require_once "header.php";
     </main>
 
 <?php
-require_once "footer.php";
+require "footer.php";
 ?>

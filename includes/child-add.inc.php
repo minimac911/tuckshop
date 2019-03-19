@@ -2,7 +2,7 @@
 
 if (isset($_POST['add-child-submit'])) {
     session_start();
-    require_once 'dbh.inc.php';
+    require 'dbh.inc.php';
 
     //storing the information that the user enter
     $firstName = $_POST['firstName'];
@@ -31,7 +31,7 @@ if (isset($_POST['add-child-submit'])) {
                 exit();
             } else {
                 $parentId = $_SESSION['userId'];
-                $sql = "INSERT INTO tblChildren (firstNameChild, lastNameChild, gradeChild, classChild, idUsers) VALUES (?, ?, ?, ?, '$parentId');";
+                $sql = "INSERT INTO tblChildren (firstNameChild, lastNameChild, gradeChild, classChild, idUser) VALUES (?, ?, ?, ?, '$parentId');";
                 $stmt = mysqli_stmt_init($conn);
 
                 if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -42,15 +42,16 @@ if (isset($_POST['add-child-submit'])) {
                     mysqli_stmt_execute($stmt);
 
                     //make sure that another child is added to databse table 'users'
-                    $sql = "UPDATE users SET numChildren = numChildren + 1 WHERE idUsers =? ;";
+                    $sql = "UPDATE users SET numChildren = numChildren+1 WHERE idUser = ? ;";
                     $stmt = mysqli_stmt_init($conn);
                     if (!mysqli_stmt_prepare($stmt, $sql)) {
                         header("Location: ../add-child.php?error=sqlerror");
                         exit();
                     } else {
                         mysqli_stmt_bind_param($stmt, "i", $parentId);
+                        var_dump($parentId);
                         mysqli_stmt_execute($stmt);
-                        require_once 'session-add.inc.php';
+                        require 'session-add.inc.php';
                     }
                     header("Location: ../add-child.php?add=success");
                     exit();

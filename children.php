@@ -1,7 +1,7 @@
 <?php
-require_once "header.php";
-require_once "includes/account-verify-session.inc.php";   
-require_once 'includes/child-view.inc.php';
+require "header.php";
+require "includes/account-verify-session.inc.php";   
+require 'includes/child-view.inc.php';
 ?>
 
     <main>
@@ -131,5 +131,5 @@ require_once 'includes/child-view.inc.php';
     </main>
 
 <?php
-require_once "footer.php";
+require "footer.php";
 ?>

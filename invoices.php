@@ -1,8 +1,8 @@
 <?php
-require_once "header.php";
-require_once "includes/account-verify-session.inc.php";
-require_once "includes/invoice-view.inc.php";
-require_once "includes/invoice-create-table.inc.php";
+require "header.php";
+require "includes/account-verify-session.inc.php";
+require "includes/invoice-view.inc.php";
+require "includes/invoice-create-table.inc.php";
 ?>
 
     <main>
@@ -24,5 +24,5 @@ require_once "includes/invoice-create-table.inc.php";
     </main>
     
 <?php
-    require_once "footer.php";
+    require "footer.php";
 ?>

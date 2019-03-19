@@ -1,5 +1,5 @@
 <?php
-    require_once "header.php";
+    require "header.php";
 ?>
 
     <main>
@@ -19,5 +19,5 @@
     </main>
 
 <?php
-    require_once "footer.php";
+    require "footer.php";
 ?>

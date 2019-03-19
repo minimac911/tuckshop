@@ -2,9 +2,9 @@
 
 if (isset($_POST['delete-child'])) {
     session_start();
-    require_once 'dbh.inc.php';
+    require 'dbh.inc.php';
 
-    require_once 'verify-account.inc.php';
+    require 'verify-account.inc.php';
     //check that url is correct
     if (isset($_GET['cid'])) {
         //childs id in DB
@@ -32,7 +32,7 @@ if (isset($_POST['delete-child'])) {
 
                 //make sure that another child is deleted to databse table 'users'
                 $parentId = $_SESSION['userId'];
-                $sql = "UPDATE users SET numChildren = numChildren - 1 WHERE idUsers =? ;";
+                $sql = "UPDATE users SET numChildren = numChildren - 1 WHERE idUser =? ;";
                 $stmt = mysqli_stmt_init($conn);
                 if (!mysqli_stmt_prepare($stmt, $sql)) {
                     header("Location: ../add-child.php?error=sqlerror");
@@ -46,7 +46,7 @@ if (isset($_POST['delete-child'])) {
                     deleteOrdersByCid($childId);
 
                     //update session once completed
-                    require_once 'session-add.inc.php';
+                    require 'session-add.inc.php';
                 }
                 header("Location: ../children.php?status=edit&delete=success");
                 exit();

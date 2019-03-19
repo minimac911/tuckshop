@@ -2,7 +2,7 @@
 
 if (isset($_POST['signup-submit'])) {
 
-    require_once 'dbh.inc.php';
+    require 'dbh.inc.php';
 
     $username = $_POST['uid'];
     $email = $_POST['mail'];
@@ -88,17 +88,17 @@ if (isset($_POST['signup-submit'])) {
                                         exit();
                                     } elseif ($pwdCheck == true) {
                                         session_start();
-                                        $_SESSION['userId'] = $row['idUsers'];
+                                        $_SESSION['userId'] = $row['idUser'];
                                         $_SESSION['userUid'] = $row['usernameUsers'];
                                         $_SESSION['child'] = array(); 
                                         $_SESSION['last_login_timestamp'] = time();
                                     }
                                 } else {
-                                    header("Location: ../login-signup.php?errorlog=wrongpassworduser");
+                                    header("Location: ../login-signup.php?errorlog=wrongpassworduser2");
                                     exit();
                                 }
                             }
-                            // require_once("account-login.inc.php");
+                            // require("account-login.inc.php");
                             header("Location: ../add-child.php");
                             exit();
                         }

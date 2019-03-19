@@ -1,5 +1,5 @@
 <?php
-require_once "header.php";
+require "header.php";
 ?>
 
     <main>
@@ -44,10 +44,10 @@ require_once "header.php";
                     ?>
                     <div class="form">
                         <form action="includes/account-signup.inc.php" method="post" autocomplete="off">
-                            <input class="username" type="text" name="uid" placeholder="Username" value="<?php echo $username; ?>" require_onced>
-                            <input class="email" type="text" name="mail" placeholder="Email" value="<?php echo $email; ?>" require_onced> 
-                            <input class="password" type="password" name="pwd" placeholder="Password" require_onced>
-                            <input class="repeat-password" type="password" name="pwd-repeat" placeholder="Repeat Password" require_onced >
+                            <input class="username" type="text" name="uid" placeholder="Username" value="<?php echo $username; ?>" required>
+                            <input class="email" type="text" name="mail" placeholder="Email" value="<?php echo $email; ?>" required> 
+                            <input class="password" type="password" name="pwd" placeholder="Password" required>
+                            <input class="repeat-password" type="password" name="pwd-repeat" placeholder="Repeat Password" required >
                             <button  type="submit" name="signup-submit">Signup</button>
                         </form>
                     </div>
@@ -88,5 +88,5 @@ require_once "header.php";
     </main>
 
 <?php
-require_once "footer.php";
+require "footer.php";
 ?>

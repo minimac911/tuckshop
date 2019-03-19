@@ -14,13 +14,14 @@ if (isset($_POST['check-pay'])) {
             $orderDetails = array();
             $orderDetails["id"] = $_POST['id_'.$i];
             $orderDetails["pid"] =  $_SESSION['userId'];
-            echo($orderDetails["pid"]);
             $orderDetails["date"] = $_POST['date_'.$i];
+            echo($orderDetails["date"]);
+
             $orderDetails["subTotal"] = $_POST['subTotal_'.$i];
             $orders[$i] = $orderDetails;
         }
 
-        require_once "checkout-validate.inc.php";
+        require "checkout-validate.inc.php";
         // make sure that the user has not tried to change anything
         if(validCheckOut($orders)){
             $s = "Location: checkout-payment-succesful.inc.php?oid=";
@@ -28,6 +29,14 @@ if (isset($_POST['check-pay'])) {
                 $s .= $value['id']."-";
             }
             $s = substr($s, 0, -1);
+            //what should it do?
+            //generate invoice and then pay?
+            //pay before generating
+            //probably first option
+            $snapscanlink = "Location: https://pos.snapscan.io/qr/z4qmRal9?id=".$orderDetails["id"]."&amount=".$orderDetails["subTotal"]*100;
+            header($snapscanlink);
+            exit();
+
             header($s);
             exit();
         }else{

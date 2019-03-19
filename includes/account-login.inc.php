@@ -2,7 +2,7 @@
 
 if (isset($_POST['login-submit'])) {
 
-    require_once 'dbh.inc.php';
+    require 'dbh.inc.php';
 
     $mailuid = $_POST['uid'];
     $password = $_POST['pwd'];
@@ -27,7 +27,7 @@ if (isset($_POST['login-submit'])) {
                     exit();
                 } elseif ($pwdCheck == true) {
                     session_start();
-                    $_SESSION['userId'] = $row['idUsers'];
+                    $_SESSION['userId'] = $row['idUser'];
                     $_SESSION['userUid'] = $row['usernameUsers'];
                     $_SESSION['child'] = array();  
 
@@ -36,7 +36,7 @@ if (isset($_POST['login-submit'])) {
                     $_SESSION['last_login_timestamp'] = time();
 
                     //check if user has added any children
-                    $sql = "SELECT * FROM users WHERE idUsers = ?;";
+                    $sql = "SELECT * FROM users WHERE idUser = ?;";
                     $stmt = mysqli_stmt_init($conn);
                     if (!mysqli_stmt_prepare($stmt, $sql)) {
                         header("Location: ../login-signup.php?errorlog=sqlerror");
@@ -50,7 +50,7 @@ if (isset($_POST['login-submit'])) {
                                 header("Location: ../add-child.php?error=nochild");
                                 exit();
                             } else {
-                                require_once 'session-add.inc.php';
+                                require 'session-add.inc.php';
                             }
                         }
                     }

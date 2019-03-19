@@ -12,7 +12,7 @@ if (isset($_POST['reset-request-submit'])) {
     //maybe change to 30 min
     $expires = date("U") + 1800;
 
-    require_once 'dbh.inc.php';
+    require 'dbh.inc.php';
 
     $userEmail = $_POST["email"];
 

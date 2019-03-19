@@ -1,8 +1,8 @@
 <?php
-require_once "header.php";
+require "header.php";
 //error checking
-require_once "includes/account-verify-session.inc.php";
-require_once 'includes/verify-account.inc.php';
+require "includes/account-verify-session.inc.php";
+require 'includes/verify-account.inc.php';
 if(empty($_SESSION['child'][0]['childId'])){
     header ("Location: children.php");
     exit();
@@ -58,7 +58,7 @@ if(empty($_SESSION['child'][0]['childId'])){
                             echo($_GET['cid']);
                             $childID = $_GET['cid'];
                             
-                            // require_once "includes/verify-account.inc.php";
+                            // require "includes/verify-account.inc.php";
                             if(!isValidChilID($childID)){  
                                 header("Location: children.php?error=nochild");
                                 exit();
@@ -81,14 +81,14 @@ if(empty($_SESSION['child'][0]['childId'])){
         <!-- START ORDER DATE  -->
             <div class="order-day">
                 <div class="order-day-content">
-                    <select id="drop-down-date" name="order-date" require_onced>
+                    <select id="drop-down-date" name="order-date" required>
                         <option disabled selected value> -- choose a date -- </option>
                         <!-- get oreder days for specific grade -->
                         <?php 
                         $gradeOrderDay = $_SESSION['child'][$posArray]['childGrade'];
                         $orderDay = "";
                         
-                        require_once "includes/order-get-days.inc.php";
+                        require "includes/order-get-days.inc.php";
                         ?>
                     </select>
                     <?php
@@ -112,7 +112,7 @@ if(empty($_SESSION['child'][0]['childId'])){
                     <input type="text" id="myInput" onkeyup="searchItem()" placeholder="Search for Item.." title="Type in a item">
                 </div>
                 <?php
-                require_once "includes/dbh.inc.php";
+                require "includes/dbh.inc.php";
                 
                 $sql = "SELECT * FROM tblShopItems ";           
                 switch ($_SESSION['child'][$posArray]['childGrade']) {
@@ -191,7 +191,7 @@ if(empty($_SESSION['child'][0]['childId'])){
                                 <!-- add category for easy searching -->
                                 <span style="display: none;"> (<?php echo $arrProduct[$key]["categoryItem"]; ?>)</span>
                             </td>
-                            <td class="product-price">R <span><?php echo $arrProduct[$key]["priceItem"]; ?></span></td>
+                            <td class="product-price">R <span><?php echo number_format((float)$arrProduct[$key]["priceItem"], 2, '.', ''); ?></span></td>
                             <td class="qty-action">
                                 <button type="button" id="sub" class="sub">-</button>
                                 <p class="product-quantity" id="count">0</p>
@@ -220,5 +220,5 @@ if(empty($_SESSION['child'][0]['childId'])){
 <?php
     echo($gradeOrderDay);
     echo '<pre>'; print_r($listDays); echo '</pre>';
-require_once "footer.php";
+require "footer.php";
 ?>

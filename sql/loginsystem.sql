@@ -48,14 +48,14 @@ CREATE TABLE `tblchildren` (
   `lastNameChild` text NOT NULL,
   `gradeChild` text NOT NULL,
   `classChild` text NOT NULL,
-  `idUsers` int(11) NOT NULL
+  `idUser` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tblchildren`
 --
 
-INSERT INTO `tblchildren` (`idChild`, `firstNameChild`, `lastNameChild`, `gradeChild`, `classChild`, `idUsers`) VALUES
+INSERT INTO `tblchildren` (`idChild`, `firstNameChild`, `lastNameChild`, `gradeChild`, `classChild`, `idUser`) VALUES
 (1, 'testFirstName', 'testLastName', 'RR', 'red', 4);
 
 -- --------------------------------------------------------
@@ -65,7 +65,7 @@ INSERT INTO `tblchildren` (`idChild`, `firstNameChild`, `lastNameChild`, `gradeC
 --
 
 CREATE TABLE `users` (
-  `idUsers` int(11) NOT NULL,
+  `idUser` int(11) NOT NULL,
   `usernameUsers` tinytext NOT NULL,
   `emailUsers` tinytext NOT NULL,
   `pwdUsers` longtext NOT NULL
@@ -75,7 +75,7 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`idUsers`, `usernameUsers`, `emailUsers`, `pwdUsers`) VALUES
+INSERT INTO `users` (`idUser`, `usernameUsers`, `emailUsers`, `pwdUsers`) VALUES
 (1, 'a', 'thomasmcalpine77@gmail.com', '$2y$10$M/49wQwFsiCOtywyj1NYU.eSz4Ie5y6CbnVxWg6xpt40Tiw/fCL46'),
 (2, 'ron', 'homegmax@gmail.com', '$2y$10$jdRlSo.3Qy5u4aFbyH745OrxMuGr2JtNEpfl6w2BBSeGc.goLdOay'),
 (3, 'b', 'thomasmcalpine77@gmail.com', '$2y$10$OKa10coKlVp50yDl2QNoA.eucok9kyfFZNHQVNxGyGviUNEe5ZuPG'),
@@ -104,7 +104,7 @@ ALTER TABLE `tblchildren`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`idUsers`);
+  ADD PRIMARY KEY (`idUser`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -126,7 +126,7 @@ ALTER TABLE `tblchildren`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `idUsers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
