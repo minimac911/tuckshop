@@ -24,6 +24,14 @@ class db {
 		}
 		$this->connection->set_charset($this->charset);
 	}
+
+	//function to see if an error will come from the query
+	public function validQuery($sql){
+		if($this->connection->prepare($sql)){
+			return true;
+		}
+		return false;
+	}
 	
 	/**
 	 * creating the query
@@ -145,6 +153,11 @@ class db {
 	    if(is_float($var)) return 'd';
 	    if(is_int($var)) return 'i';
 	    return 'b';
+	}
+	
+	//get the id of the record that was inserted
+	public function getInsertID(){
+		return $this->connection->insert_id;
 	}
 
 }

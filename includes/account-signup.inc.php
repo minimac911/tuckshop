@@ -2,7 +2,9 @@
 
 if (isset($_POST['signup-submit'])) {
 
-    require 'dbh.inc.php';
+    // require 'dbh.inc.php';
+    require_once "classes/classes.inc.php";
+    $db = new db();
 
     $username = $_POST['uid'];
     $email = $_POST['mail'];
@@ -28,87 +30,75 @@ if (isset($_POST['signup-submit'])) {
 
         // Checking if username is taken
         $sql = "SELECT * FROM users WHERE usernameUsers=?";
-        $stmt = mysqli_stmt_init($conn);
-        mysqli_stmt_prepare($stmt, $sql);
-        if (!mysqli_stmt_prepare($stmt, $sql)) {
+        if(!$db->validQuery($sql)){
             header("Location: ../login-signup.php?error=sqlerror");
             exit();
-        } else {
-            mysqli_stmt_bind_param($stmt, "s", $username);
-            mysqli_stmt_execute($stmt);
-            mysqli_stmt_store_result($stmt);
-            $resultcheck = mysqli_stmt_num_rows($stmt);
+        }else{
+            $resultcheck = $db->query($sql,$username)->numRows();
             if ($resultcheck > 0) {
                 header("Location: ../login-signup.php?error=userntaken");
                 exit();
-            } else {
-
+            }else{
                 // checking if email has been taken
                 $sql = "SELECT * FROM users WHERE emailUsers=?";
-                $stmt = mysqli_stmt_init($conn);
-                mysqli_stmt_prepare($stmt, $sql);
-                if (!mysqli_stmt_prepare($stmt, $sql)) {
+                if(!$db->validQuery($sql)){
                     header("Location: ../login-signup.php?error=sqlerror");
                     exit();
-                } else {
-                    mysqli_stmt_bind_param($stmt, "s", $email);
-                    mysqli_stmt_execute($stmt);
-                    mysqli_stmt_store_result($stmt);
-                    $resultcheck = mysqli_stmt_num_rows($stmt);
+                }else{
+                    $resultcheck = $db->query($sql,$email)->numRows();
                     if ($resultcheck > 0) {
                         header("Location: ../login-signup.php?error=emailtaken");
                         exit();
-                    } else {
-                        $sql = "INSERT INTO users (usernameUsers, emailUsers, pwdUsers) VALUES (?, ?, ?)";
-                        $stmt = mysqli_stmt_init($conn);
+                    }else{
 
-                        if (!mysqli_stmt_prepare($stmt, $sql)) {
+                        $sql = "INSERT INTO users (usernameUsers, emailUsers, pwdUsers) VALUES (?, ?, ?)";
+                        if(!$db->validQuery($sql)){
                             header("Location: ../login-signup.php?error=sqlerror");
                             exit();
-                        } else {
+                        }else{
+                            //hash password
                             $hasedPwd = password_hash($password, PASSWORD_DEFAULT);
-
-                            mysqli_stmt_bind_param($stmt, "sss", $username, $email, $hasedPwd);
-                            mysqli_stmt_execute($stmt);
-
-                            //loging in the user
-                            $sql = "SELECT * FROM users WHERE usernameUsers = ?;";
-                            $stmt = mysqli_stmt_init($conn);
-                            if (!mysqli_stmt_prepare($stmt, $sql)) {
-                                header("Location: ../login-signup.php?errorlog=sqlerror");
-                                exit();
-                            } else {
-                                mysqli_stmt_bind_param($stmt, "s", $username);
-                                mysqli_stmt_execute($stmt);
-                                $results = mysqli_stmt_get_result($stmt);
-                                if ($row = mysqli_fetch_assoc($results)) {
-                                    $pwdCheck = password_verify($password, $row['pwdUsers']);
-                                    if ($pwdCheck == false) {
-                                        header("Location: ../login-signup.php?errorlog=wrongpassworduser");
-                                        exit();
-                                    } elseif ($pwdCheck == true) {
-                                        session_start();
-                                        $_SESSION['userId'] = $row['idUser'];
-                                        $_SESSION['userUid'] = $row['usernameUsers'];
-                                        $_SESSION['child'] = array(); 
-                                        $_SESSION['last_login_timestamp'] = time();
-                                    }
-                                } else {
-                                    header("Location: ../login-signup.php?errorlog=wrongpassworduser2");
-                                    exit();
-                                }
-                            }
-                            // require("account-login.inc.php");
-                            header("Location: ../add-child.php");
-                            exit();
+                            //execute query
+                            $db->query($sql,$username, $email, $hasedPwd);
                         }
+
+                        //loging in the user
+                        $sql = "SELECT * FROM users WHERE usernameUsers = ?;";
+                        if(!$db->validQuery($sql)){
+                            header("Location: ../login-signup.php?error=sqlerror");
+                            exit();
+                        }else{
+                            //exec query
+                            $qry = $db->query($sql,$username);
+                            $numrow = $qry->numRows();
+                            $result = $qry->fetchArray();
+
+                            //if there is only one row
+                            if($numrow==1){
+                                $pwdCheck = password_verify($password, $result['pwdUsers']);
+                                if ($pwdCheck == false) {
+                                    header("Location: ../login-signup.php?errorlog=wrongpassworduser");
+                                    exit();
+                                } elseif ($pwdCheck == true) {
+                                    session_start();
+                                    $_SESSION['userId'] = $result['idUser'];
+                                    $_SESSION['userUid'] = $result['usernameUsers'];
+                                    $_SESSION['child'] = array(); 
+                                    $_SESSION['last_login_timestamp'] = time();
+                                }
+                            }else{
+                                    header("Location: ../login-signup.php?errorlog=wrongpassworduser");
+                                    exit();
+                            }
+                        }
+                        header("Location: ../add-child.php");
+                        exit();
                     }
                 }
             }
         }
     }
-    mysqli_stmt_close($stmt);
-    mysqli_close($conn);
+    $db->close();
 } else {
     header("Location: ../login-signup.php");
     exit();

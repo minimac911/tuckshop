@@ -1,35 +1,32 @@
 <?php
 session_start();
 
-
-
+require_once 'classes/classes.inc.php';
+$db = new db();
 //add childrens id to the session
 $sql = "SELECT * FROM tblChildren WHERE idUser = ?;";
-$stmt = mysqli_stmt_init($conn);
-
-if (!mysqli_stmt_prepare($stmt, $sql)) {
+// check if the sql query is valid
+if(!$db->validQuery($sql)){
     header("Location: ../login-signup.php?errorlog=sqlerror");
     exit();
-} else {
-    mysqli_stmt_bind_param($stmt, "s", $_SESSION['userId']);
-    mysqli_stmt_execute($stmt);
-    $results = mysqli_stmt_get_result($stmt);
+}else{
+    $results = $db->query($sql, $_SESSION['userId'])->fetchAll();
 
     //SECURITY CHECK (no if statment checking if there are any rows)
     // create an array
     $child = array();
-    while ($row = mysqli_fetch_array($results)) {
+    foreach ($results as $key => $value) {
         $child[] = array(
-                    "childId" => $row["idChild"],
-                    "childFirstName" => $row["firstNameChild"],
-                    "childLastName" => $row["lastNameChild"],
-                    "childGrade" => $row["gradeChild"],
-                    "childClass" => $row["classChild"]
-                );
-    }      
+            "childId" => $value["idChild"],
+            "childFirstName" => $value["firstNameChild"],
+            "childLastName" => $value["lastNameChild"],
+            "childGrade" => $value["gradeChild"],
+            "childClass" => $value["classChild"]
+        );
+    }
     //checking that the array is not empty    
     $_SESSION['child'] = $child;
 
+    //close connection to database
+    $db->close();
 }
-
-
