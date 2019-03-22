@@ -7,9 +7,9 @@
 
 // $conn = mysqli_connect($servername, $dBUsername, $dBPassword, $dBName);
 
-$servername = "localhost:3306";
+$servername = "127.0.0.1:3306";
 $dBUsername = "root";
-$dBPassword = "root";
+$dBPassword = "admin";
 $dBName = "dbtuckshop";
 
 $conn = mysqli_connect($servername, $dBUsername, $dBPassword, $dBName);
@@ -17,4 +17,3 @@ $conn = mysqli_connect($servername, $dBUsername, $dBPassword, $dBName);
 if(!$conn){
     die("Connection failed: ".mysqli_connect_error());
 }
-
