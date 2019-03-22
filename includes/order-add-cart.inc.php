@@ -14,6 +14,11 @@ if (isset($_POST['add-order-cart'])) {
 
         $parentId = $_SESSION['userId'];
         $orderDate = $_POST['order-date'];
+        echo '<pre>' . print_r($orderDate, TRUE) . '</pre>';
+        $orderDate = date("Y-m-d H:i:s", strtotime($orderDate));
+        // setting the time        
+        // $orderDate = date("Y-m-d H:i:s", strtotime("+7 hour",strtotime($orderDate)));
+
         $ttlPrice = $_POST['ttlPrice'];
         $ttlPrice = ltrim($ttlPrice, 'R ');
         $items = array();

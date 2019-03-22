@@ -15,7 +15,6 @@ if (isset($_POST['check-pay'])) {
             $orderDetails["id"] = $_POST['id_'.$i];
             $orderDetails["pid"] =  $_SESSION['userId'];
             $orderDetails["date"] = $_POST['date_'.$i];
-            echo($orderDetails["date"]);
 
             $orderDetails["subTotal"] = $_POST['subTotal_'.$i];
             $orders[$i] = $orderDetails;
@@ -33,15 +32,15 @@ if (isset($_POST['check-pay'])) {
             //generate invoice and then pay?
             //pay before generating
             //probably first option
-            $snapscanlink = "Location: https://pos.snapscan.io/qr/z4qmRal9?id=".$orderDetails["id"]."&amount=".$orderDetails["subTotal"]*100;
-            header($snapscanlink);
-            exit();
+            // $snapscanlink = "Location: https://pos.snapscan.io/qr/z4qmRal9?id=".$orderDetails["id"]."&amount=".$orderDetails["subTotal"]*100;
+            // header($snapscanlink);
+            // exit();
 
             header($s);
             exit();
         }else{
-            header("Location: ../checkout.php?status=invalidItem");
-            exit();
+            // header("Location: ../checkout.php?status=invalidItem");
+            // exit();
         }
     }else{
         header("Location: ../checkout.php?status=noitem");

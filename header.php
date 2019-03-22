@@ -32,6 +32,11 @@ session_start();
     
 <header>
     <?php
+
+    //decalring the time zone 
+    date_default_timezone_set('Africa/Windhoek');
+    // date_default_timezone_set('America/New_York');
+
     //checking if the user is logged in
     if(isset($_SESSION['userId'])){
         //checking if the user has been idle for too long
@@ -53,7 +58,7 @@ session_start();
         
             <ul class="header-buttons">
                 <li><a href="index.php">Home</a></li>
-                <li><a href="includes/order-prepare-form.inc.php?status=order">Order</a></li>
+                <li><a href="children.php?status=order">Order</a></li>
                 <li><a href="children.php">Children</a></li>
                 <!-- <li><a href="#">Contact</a></li> -->
             </ul>

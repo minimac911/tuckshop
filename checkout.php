@@ -82,7 +82,7 @@ unset($_SESSION['checkoutARR']);
                                     </h3>
                                     <h3>
                                         COLLECTION DATE: <?php 
-                                            $date = date("l, d-M-Y", strtotime($orderDueDate[$orderId]));
+                                            $date = date("Y-m-d H:i:s", strtotime($orderDueDate[$orderId]));
                                             echo("<span style='float: right;'>".date("l, d-M-Y", strtotime($orderDueDate[$orderId]))."</span>"); 
                                             ?>
                                     </h3>
@@ -103,13 +103,13 @@ unset($_SESSION['checkoutARR']);
                                                     if($value["quantity"]<=1){
                                                     ?>
                                                         <td class="qty"><?php echo($value["quantity"]."x");?></td>
-                                                        <td class="name"><?php echo($value["nameItem"]." (".$value["categoryItem"].")");?></td>
+                                                        <td class="name"><?php echo($value["nameItem"]." (".$value["category"].")");?></td>
                                                         <td class="price" style="text-align: right;"><?php echo("R ".number_format((float)$value["price"], 2, '.', ''));?></td>
                                                     <?php
                                                     }else{
                                                         ?>
                                                         <td class="qty"><?php echo($value["quantity"]."x");?></td>
-                                                        <td class="name"><?php echo($value["nameItem"]." (".$value["categoryItem"].")");?></td>
+                                                        <td class="name"><?php echo($value["nameItem"]." (".$value["category"].")");?></td>
                                                         <td class="price" style="text-align: right;"><span style="font-size: 13px;">(<?php echo("R ".number_format((float)($value["price"]/$value["quantity"]), 2, '.', '')); ?>)</span><?php echo("R ".number_format((float)$value["price"], 2, '.', ''));?></td>
                                                         <?php
                                                     }

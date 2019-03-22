@@ -17,13 +17,13 @@ function dayFree($childId, $date){
         $results = mysqli_stmt_get_result($stmt);
 
         while ($row = mysqli_fetch_array($results)) {
-            echo('<p>');
-            echo($row['dueDate']);
-            echo(" == ");
-            echo(date("Y-m-d", strtotime($date)));
-            echo("</p>\n");
+            // echo('<p>');
+            // echo($row['dueDate']);
+            // echo(" == ");
+            // echo(date("Y-m-d H:i:s", strtotime($date)));
+            // echo("</p>\n");
 
-            if($row['dueDate'] == date("Y-m-d", strtotime($date))){
+            if($row['dueDate'] == date("Y-m-d H:i:s", strtotime($date))){
                 return false;
             }
         }

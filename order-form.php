@@ -37,9 +37,9 @@ if(empty($_SESSION['child'][0]['childId'])){
                     }
                 }
             ?></i></h1>
-            <form class="order-form-change-button" action="">
+            <!-- <form class="order-form-change-button" action="">
                 <button formaction="children.php">Change</button>
-            </form>
+            </form> -->
             <hr>
         </div>
 
@@ -83,11 +83,12 @@ if(empty($_SESSION['child'][0]['childId'])){
                 <div class="order-day-content">
                     <select id="drop-down-date" name="order-date" required>
                         <option disabled selected value> -- choose a date -- </option>
-                        <!-- get oreder days for specific grade -->
+
+                        <!-- get order days for specific grade -->
                         <?php 
                         $gradeOrderDay = $_SESSION['child'][$posArray]['childGrade'];
                         $orderDay = "";
-                        
+                        //get the days for the order
                         require "includes/order-get-days.inc.php";
                         ?>
                     </select>
@@ -148,7 +149,7 @@ if(empty($_SESSION['child'][0]['childId'])){
                     $arrCategory = array();   
                     while ($row = mysqli_fetch_array($results)) {
                         $arrProduct[] = $row; 
-                        $arrCategory[] = $row['categoryItem'];
+                        $arrCategory[] = $row['category'];
                     }      
                     $arrUniqueCat = array_unique($arrCategory);
                 }
@@ -169,8 +170,8 @@ if(empty($_SESSION['child'][0]['childId'])){
                             </thead>
                         <?php
                         foreach($arrProduct as $key=>$value){
-                            if($uniqueCat !== $arrProduct[$key]["categoryItem"]){
-                                $uniqueCat = $arrProduct[$key]["categoryItem"];
+                            if($uniqueCat !== $arrProduct[$key]["category"]){
+                                $uniqueCat = $arrProduct[$key]["category"];
                                 ?>
                                 <thead class="tableHead thItem">
                                     <tr>
@@ -189,7 +190,7 @@ if(empty($_SESSION['child'][0]['childId'])){
                             <td class="product-title">
                                 <?php echo $arrProduct[$key]["nameItem"]; ?>
                                 <!-- add category for easy searching -->
-                                <span style="display: none;"> (<?php echo $arrProduct[$key]["categoryItem"]; ?>)</span>
+                                <span style="display: none;"> (<?php echo $arrProduct[$key]["category"]; ?>)</span>
                             </td>
                             <td class="product-price">R <span><?php echo number_format((float)$arrProduct[$key]["priceItem"], 2, '.', ''); ?></span></td>
                             <td class="qty-action">

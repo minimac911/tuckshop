@@ -4,6 +4,39 @@ var numRows = 0;
 
 var checkoutTotal = 0;
 
+//function to display the date in the correct form "l, d-M-Y"
+let displayDate = function(d){
+    //array of week day names
+    var weekdays = ["Sunday","Monday", "Tuesday", "Wednesday", 
+        "Thursday", "Friday", "Saturday"];
+
+    var month_names = ["Jan","Feb", "Mar", "Apr", 
+    "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    dateReceived = new Date(d);
+    // dateReceived.setDate(dateReceived.getDate()+7)
+
+    //split date into dd=day, mm=month and yy=year
+    let dayOfWeek = dateReceived.getDay();
+    let dd = dateReceived.getDate();
+    let mm = dateReceived.getMonth();
+    let mName = month_names[mm];
+    let yy = dateReceived.getFullYear();
+
+    let dateDisplay = weekdays[dayOfWeek] + ", " ;
+
+    if(dd>0&&dd<10){
+        dateDisplay += "0"+ dd;
+    }else{
+        dateDisplay += dd;
+    }
+
+    dateDisplay += "-"+mName+"-"+yy;    
+
+    //return correct fromat
+    return dateDisplay;
+}
+
 // used to make order greyscale once added to checkout
 function grayer(formId, yesNo) {
     var f = document.getElementById(formId), s, opacity;
@@ -33,7 +66,7 @@ let refreshCheckout = function(checkoutOrder){
         row.cells[0].innerHTML = addInputField("size",count+1)
             +addInputField("id_"+count,checkoutOrder[0])
             +addInputField("name_"+count,checkoutOrder[1])+checkoutOrder[1];
-        row.cells[1].innerHTML = addInputField('date_'+count,checkoutOrder[2])+checkoutOrder[2];
+        row.cells[1].innerHTML = addInputField('date_'+count,checkoutOrder[2])+displayDate(checkoutOrder[2]);
         row.cells[2].innerHTML = addInputField("subTotal_"+count,checkoutOrder[3])+"R "+checkoutOrder[3];
         
         count++;
@@ -61,7 +94,7 @@ let displayCheckout = function(remove, rowId = -1, formID){
             cellName.innerHTML = addInputField("size",count+1)
                 +addInputField("id_"+count,checkoutOrder[0])
                 +addInputField("name_"+count,checkoutOrder[1])+checkoutOrder[1];
-            cellDate.innerHTML = addInputField('date_'+count,checkoutOrder[2])+checkoutOrder[2];
+            cellDate.innerHTML = addInputField('date_'+count,checkoutOrder[2])+displayDate(checkoutOrder[2]);
             celltotal.innerHTML = addInputField("subTotal_"+count,checkoutOrder[3])+"R "+checkoutOrder[3];
             checkoutTotal +=  parseFloat(checkoutOrder[3]);
             count++;    
@@ -125,5 +158,3 @@ let addToCheckOut = function(orderId, nameChild, date, total, formID){
     grayer(formID,true);
 
 };
-
-

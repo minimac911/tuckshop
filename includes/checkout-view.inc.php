@@ -5,17 +5,17 @@ require 'checkout-expire.inc.php';
 //geting the orders information from tblorders
 //getting the items info from tblshopitems
 //geting items in order from tblorder_cart
-$sql = "SELECT tblorders.idOrder, tblorder_cart.idItem, tblshopitems.nameItem, tblorder_cart.quantity,".
-    "tblshopitems.categoryItem, tblorder_cart.price, tblorders.totalPrice,".
-    "tblorders.dueDate, tblorders.idChild, tblorders.idParent, tblorders.dueDate ".
-    "FROM ( ( tblorder_cart INNER JOIN tblorders ON tblorder_cart.idOrder = tblorders.idOrder ) ".
-    "INNER JOIN tblshopitems ON tblorder_cart.idItem = tblshopitems.idItem ) ".
-    "WHERE tblorders.idParent = ? AND tblorders.paid = 0 AND tblorders.expired = 0 ".
-    "ORDER BY tblorders.dueDate";
+$sql = "SELECT tblorders.idOrder, tblorder_cart.idItem, tblshopitems.nameItem, tblorder_cart.quantity, 
+    tblshopitems.category, tblorder_cart.price, tblorders.totalPrice,
+    tblorders.dueDate, tblorders.idChild, tblorders.idParent, tblorders.dueDate 
+    FROM ( ( tblorder_cart INNER JOIN tblorders ON tblorder_cart.idOrder = tblorders.idOrder ) 
+    INNER JOIN tblshopitems ON tblorder_cart.idItem = tblshopitems.idItem )
+    WHERE tblorders.idParent = ? AND tblorders.paid = 0 AND tblorders.expired = 0 
+    ORDER BY tblorders.dueDate";
     
 $stmt = mysqli_stmt_init($conn);
 if (!mysqli_stmt_prepare($stmt, $sql)) {
-    header("Location: ../children.php?errorlog=sqlerror");
+    header("Location: index.php?errorlog=sqlerror");
     exit();
 } else {
     mysqli_stmt_bind_param($stmt, "i", $_SESSION['userId']);

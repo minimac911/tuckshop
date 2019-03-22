@@ -44,7 +44,7 @@ let refreshCheckout = function(checkoutOrder){
         row.cells[0].innerHTML = addInputField("size",count+1)
             +addInputField("id_"+count,checkoutOrder[0])
             +addInputField("name_"+count,checkoutOrder[1])+checkoutOrder[1];
-        row.cells[1].innerHTML = addInputField('date_'+count,checkoutOrder[2])+checkoutOrder[2];
+        row.cells[1].innerHTML = addInputField('date_'+count,checkoutOrder[2])+displayDate(checkoutOrder[2]);
         row.cells[2].innerHTML = addInputField("subTotal_"+count,checkoutOrder[3])+"R "+checkoutOrder[3];
         
         count++;
@@ -63,20 +63,22 @@ let displayCheckout = function(remove, rowId = -1, formID){
         var cellDate = row.insertCell(1);
         var celltotal = row.insertCell(2);
         var removeIcon = row.insertCell(3);
-
         
-
         // add to checkout summary
         let count = 0;
         this.arrCheckout.forEach(checkoutOrder => {
             cellName.innerHTML = addInputField("size",count+1)
                 +addInputField("id_"+count,checkoutOrder[0])
                 +addInputField("name_"+count,checkoutOrder[1])+checkoutOrder[1];
-            cellDate.innerHTML = addInputField('date_'+count,checkoutOrder[2])+checkoutOrder[2];
-            celltotal.innerHTML = addInputField("subTotal_"+count,checkoutOrder[3])+"R "+checkoutOrder[3];
+            // getting the correct way to display a date in the summary 
+            cellDate.innerHTML = addInputField('date_'+count,checkoutOrder[2])
+                +displayCheckout(checkoutOrder[2]);
+            celltotal.innerHTML = addInputField("subTotal_"+count,checkoutOrder[3])+"R "
+                +checkoutOrder[3];
             checkoutTotal +=  parseFloat(checkoutOrder[3]);
             count++;    
-            let remvFunc = "removeItem('"+checkoutOrder[0]+"', '"+checkoutOrder[1]+"', '"+checkoutOrder[2]+"', '"+checkoutOrder[3]+"', '"+checkoutOrder[4]+"')";
+            let remvFunc = "removeItem('"+checkoutOrder[0]+"', '"+checkoutOrder[1]+"', '"
+                +checkoutOrder[2]+"', '"+checkoutOrder[3]+"', '"+checkoutOrder[4]+"')";
             
             removeIcon.innerHTML = "<button class='checkout-remove-icon' "
                 +"onclick=\""+remvFunc+"\""
@@ -125,6 +127,15 @@ let removeItem = function(orderId,nameChild,date,total,formID){
     
     displayCheckout(true,index,formID);
 };
+
+//function to display the date in the correct form "l, d-M-Y"
+let displayDate = function(d){
+    dateReceived = new date(d);
+    let dateDisplay = getLocalDay(dateReceived) + ", " 
+        + getDay(dateReceived) + "-" + getMonth(dateReceived) + "-" + getYear(dateReceived);
+    alert(dateDisplay);
+    return dateDisplay;
+}
 
 
 

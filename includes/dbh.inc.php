@@ -7,9 +7,9 @@
 
 // $conn = mysqli_connect($servername, $dBUsername, $dBPassword, $dBName);
 
-$servername = "localhost:2206";
+$servername = "localhost:3306";
 $dBUsername = "root";
-$dBPassword = "admin";
+$dBPassword = "root";
 $dBName = "dbtuckshop";
 
 $conn = mysqli_connect($servername, $dBUsername, $dBPassword, $dBName);

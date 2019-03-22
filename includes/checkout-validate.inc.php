@@ -26,11 +26,13 @@ function validCheckOut($e){
             $a .= "isdi";
             $a_bind_params[] = $e[$i]["id"];
             //add 7 hours because it is going to be cut off at 7
-            $a_bind_params[] = date("Y-m-d H:i:s",strtotime("+7 hour",strtotime($e[$i]["date"])));
+            $a_bind_params[] = date("Y-m-d H:i:s",strtotime($e[$i]["date"]));
             
             $a_bind_params[] = $e[$i]["subTotal"];
             $a_bind_params[] = $e[$i]["pid"];
         }
+        echo '<pre>' . print_r(($a_bind_params), TRUE) . '</pre>';
+
 
         $a_param_type = str_split($a);
         /* Bind parameters. Types: s = string, i = integer, d = double,  b = blob */

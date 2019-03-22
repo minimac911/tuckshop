@@ -73,11 +73,16 @@ require 'includes/child-view.inc.php';
                                         exit();
                                     }
                                 }else{
-                                    ?>
-                                    <button name="order-form-submit" type="submit"
-                                        formaction="includes/order-prepare-form.inc.php?cid=<?php echo $childId;?>"
-                                    >Order</button>
-                                    <?php
+                                    if((isset($_GET['status']) == "order")){
+                                        if(($_GET['status'] == "order")){
+                                            ?>        
+                                            <button name="order-form-submit" type="submit"
+                                                formaction="includes/order-prepare-form.inc.php?cid=<?php echo $childId;?>"
+                                            >Order</button>
+                                            <?php
+                                        }
+                                    }
+                                    
                                 }
                             ?>
                             </form>

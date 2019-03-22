@@ -61,8 +61,8 @@ function validOrderAddCart($e){
         $results = mysqli_stmt_get_result($stmt);
         $row = mysqli_fetch_row($results);
 
-        print_r($row);
-        echo(sizeof($e));
+        // print_r($row);
+        // echo(sizeof($e));
         if($row[0] == sizeof($e)){
             return 1;
         }
